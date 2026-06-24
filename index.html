@@ -5,238 +5,196 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>智慧社区管理端</title>
 <style>
-/* ===== CSS Variables ===== */
 :root {
-  --primary: #3b82f6; --primary-dark: #2563eb; --primary-light: #eff6ff;
-  --success: #10b981; --warning: #f59e0b; --danger: #ef4444;
-  --bg: #f8fafc; --surface: #fff; --text: #0f172a; --text2: #475569; --text3: #94a3b8;
-  --border: #e2e8f0; --shadow: 0 1px 2px rgba(0,0,0,.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.06); --shadow-lg: 0 12px 32px rgba(0,0,0,.1);
-  --radius: 10px; --radius-sm: 6px; --radius-lg: 14px;
-  --sidebar-w: 240px; --sidebar-collapsed: 68px; --topbar-h: 60px;
-  --transition: .2s ease;
+  --p: #3b82f6; --pd: #2563eb; --pl: #eff6ff;
+  --s: #10b981; --w: #f59e0b; --d: #ef4444;
+  --bg: #f8fafc; --sf: #fff; --t: #0f172a; --t2: #475569; --t3: #94a3b8;
+  --b: #e2e8f0; --sh: 0 1px 2px rgba(0,0,0,.04);
+  --shm: 0 4px 12px rgba(0,0,0,.06); --shl: 0 12px 32px rgba(0,0,0,.1);
+  --r: 10px; --rs: 6px; --rl: 14px;
+  --sw: 240px; --sc: 68px; --th: 60px; --tr: .2s ease;
 }
-
-/* ===== Reset & Base ===== */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;font-size:15px}
-a{color:var(--primary);text-decoration:none}
-ul{list-style:none}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);line-height:1.6;min-height:100vh;font-size:15px}
+a{color:var(--p);text-decoration:none} ul{list-style:none}
 input,select,textarea,button{font-family:inherit;font-size:inherit}
 
-/* ===== Login ===== */
+/* Login */
 .login-page{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--bg);padding:24px}
-.login-card{background:var(--surface);border-radius:var(--radius-lg);padding:44px 40px;width:100%;max-width:400px;box-shadow:var(--shadow-lg)}
+.login-card{background:var(--sf);border-radius:var(--rl);padding:44px 40px;width:100%;max-width:400px;box-shadow:var(--shl)}
 .login-header{text-align:center;margin-bottom:36px}
 .login-header .icon{font-size:48px;margin-bottom:8px}
-.login-header h1{font-size:22px;font-weight:700;color:var(--text)}
-.login-header p{color:var(--text2);font-size:14px;margin-top:4px}
+.login-header h1{font-size:22px;font-weight:700}
+.login-header p{color:var(--t2);font-size:14px;margin-top:4px}
 .login-form .field{margin-bottom:18px}
-.login-form label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.login-form label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
 .input-wrap{position:relative}
 .input-wrap .pre{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none}
-.input-wrap input{width:100%;padding:11px 14px 11px 42px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;outline:none;transition:var(--transition);background:var(--bg)}
-.input-wrap input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(59,130,246,.12);background:var(--surface)}
-.login-error{color:var(--danger);font-size:13px;min-height:20px;margin-bottom:4px}
-.login-footer{text-align:center;margin-top:24px;font-size:12px;color:var(--text3)}
+.input-wrap input{width:100%;padding:11px 14px 11px 42px;border:1.5px solid var(--b);border-radius:var(--rs);font-size:14px;outline:none;transition:var(--tr);background:var(--bg)}
+.input-wrap input:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(59,130,246,.12);background:var(--sf)}
+.login-error{color:var(--d);font-size:13px;min-height:20px;margin-bottom:4px}
+.login-footer{text-align:center;margin-top:24px;font-size:12px;color:var(--t3)}
 
-/* ===== Layout ===== */
+/* Layout */
 .main-layout{display:flex;min-height:100vh}
-
-/* ===== Sidebar ===== */
-.sidebar{width:var(--sidebar-w);background:#0f172a;color:#fff;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:width var(--transition);overflow:hidden}
-.sidebar.collapsed{width:var(--sidebar-collapsed)}
+.sidebar{width:var(--sw);background:#0f172a;color:#fff;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:width var(--tr);overflow:hidden}
+.sidebar.collapsed{width:var(--sc)}
 .sidebar-brand{padding:20px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0}
 .sidebar-brand .logo{font-size:30px;flex-shrink:0}
 .sidebar-brand h2{font-size:17px;font-weight:700;white-space:nowrap}
 .sidebar-brand small{font-size:11px;color:rgba(255,255,255,.45);display:block}
 .sidebar.collapsed .sidebar-brand div{display:none}
 .sidebar-nav{flex:1;overflow-y:auto;padding:12px 0}
-.sidebar-nav a{display:flex;align-items:center;gap:12px;padding:11px 20px;color:rgba(255,255,255,.55);text-decoration:none;transition:var(--transition);border-left:3px solid transparent;font-size:14px;white-space:nowrap}
+.sidebar-nav a{display:flex;align-items:center;gap:12px;padding:11px 20px;color:rgba(255,255,255,.55);text-decoration:none;transition:var(--tr);border-left:3px solid transparent;font-size:14px;white-space:nowrap}
 .sidebar-nav a:hover{background:rgba(255,255,255,.05);color:#fff}
-.sidebar-nav a.active{background:rgba(59,130,246,.18);color:#fff;border-left-color:var(--primary)}
+.sidebar-nav a.active{background:rgba(59,130,246,.18);color:#fff;border-left-color:var(--p)}
 .sidebar-nav a .ico{font-size:17px;flex-shrink:0;width:24px;text-align:center}
 .sidebar.collapsed .sidebar-nav a span:not(.ico){display:none}
 .sidebar-footer{padding:14px 20px;font-size:11px;color:rgba(255,255,255,.25);border-top:1px solid rgba(255,255,255,.06);flex-shrink:0;white-space:nowrap}
 .sidebar.collapsed .sidebar-footer{text-align:center}
 
-/* ===== Main Content ===== */
-.main-content{flex:1;margin-left:var(--sidebar-w);transition:margin-left var(--transition);display:flex;flex-direction:column;min-height:100vh}
-.main-content.expanded{margin-left:var(--sidebar-collapsed)}
+.main-content{flex:1;margin-left:var(--sw);transition:margin-left var(--tr);display:flex;flex-direction:column;min-height:100vh}
+.main-content.expanded{margin-left:var(--sc)}
 
-/* ===== Topbar ===== */
-.topbar{height:var(--topbar-h);background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:50}
+/* Topbar */
+.topbar{height:var(--th);background:var(--sf);border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:50}
 .topbar-left{display:flex;align-items:center;gap:14px}
-.menu-btn{background:none;border:1.5px solid var(--border);font-size:18px;cursor:pointer;padding:6px 10px;border-radius:var(--radius-sm);color:var(--text2);transition:var(--transition);line-height:1}
-.menu-btn:hover{background:var(--bg);color:var(--text)}
+.menu-btn{background:none;border:1.5px solid var(--b);font-size:18px;cursor:pointer;padding:6px 10px;border-radius:var(--rs);color:var(--t2);transition:var(--tr);line-height:1}
+.menu-btn:hover{background:var(--bg);color:var(--t)}
 .page-title{font-size:17px;font-weight:700}
 .topbar-right{display:flex;align-items:center;gap:20px}
-.topbar-time{font-size:13px;color:var(--text2);font-variant-numeric:tabular-nums}
+.topbar-time{font-size:13px;color:var(--t2);font-variant-numeric:tabular-nums}
 .user-info{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500}
 
-/* ===== Page Content ===== */
+/* Page */
 .page-wrap{flex:1;padding:28px 32px}
 .page{display:none}
 .page.active{display:block}
 .page-head{margin-bottom:24px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:14px}
 .page-head h2{font-size:20px;font-weight:700}
-.page-head p{color:var(--text2);font-size:14px;margin-top:2px}
+.page-head p{color:var(--t2);font-size:14px;margin-top:2px}
 
-/* ===== Stats Grid ===== */
+/* Stats */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-bottom:28px}
-.stat-card{background:var(--surface);border-radius:var(--radius);padding:22px 24px;display:flex;align-items:center;gap:16px;box-shadow:var(--shadow);transition:var(--transition);cursor:pointer;border:1px solid transparent}
-.stat-card:hover{box-shadow:var(--shadow-md);border-color:var(--border);transform:translateY(-1px)}
-.stat-icon{width:50px;height:50px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
-.stat-icon.green{background:#ecfdf5;color:#10b981}
-.stat-icon.amber{background:#fffbeb;color:#f59e0b}
-.stat-icon.red{background:#fef2f2;color:#ef4444}
-.stat-icon.blue{background:#eff6ff;color:#3b82f6}
-.stat-icon.purple{background:#f5f3ff;color:#8b5cf6}
-.stat-icon.indigo{background:#eef2ff;color:#6366f1}
-.stat-icon.slate{background:#f1f5f9;color:#64748b}
+.stat-card{background:var(--sf);border-radius:var(--r);padding:22px 24px;display:flex;align-items:center;gap:16px;box-shadow:var(--sh);transition:var(--tr);cursor:pointer;border:1px solid transparent}
+.stat-card:hover{box-shadow:var(--shm);border-color:var(--b);transform:translateY(-1px)}
+.stat-icon{width:50px;height:50px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.stat-icon.g{background:#ecfdf5;color:#10b981} .stat-icon.a{background:#fffbeb;color:#f59e0b}
+.stat-icon.r{background:#fef2f2;color:#ef4444} .stat-icon.b{background:#eff6ff;color:#3b82f6}
+.stat-icon.p{background:#f5f3ff;color:#8b5cf6} .stat-icon.i{background:#eef2ff;color:#6366f1}
 .stat-val{font-size:26px;font-weight:700;line-height:1.2}
-.stat-label{font-size:13px;color:var(--text2);margin-top:3px}
+.stat-label{font-size:13px;color:var(--t2);margin-top:3px}
 
-/* ===== Cards ===== */
-.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-.card-head{padding:16px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+/* Cards */
+.card{background:var(--sf);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.card-head{padding:16px 24px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
 .card-head h3{font-size:15px;font-weight:600}
 .card-body{padding:20px 24px}
-.link{font-size:13px;color:var(--primary);font-weight:500}
-
-/* ===== Dashboard Grid ===== */
+.link{font-size:13px;color:var(--p);font-weight:500}
 .dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px}
 
-/* ===== Filter Bar ===== */
+/* Filter */
 .filter-bar{margin-bottom:18px}
 .filter-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .filter-row .field{flex:1;min-width:160px}
 
-/* ===== Tables ===== */
+/* Tables */
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
-th{background:#f8fafc;padding:12px 14px;text-align:left;font-size:12px;font-weight:600;color:var(--text2);border-bottom:2px solid var(--border);white-space:nowrap;text-transform:uppercase;letter-spacing:.5px}
-td{padding:13px 14px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:middle}
+th{background:#f8fafc;padding:12px 14px;text-align:left;font-size:12px;font-weight:600;color:var(--t2);border-bottom:2px solid var(--b);white-space:nowrap;text-transform:uppercase;letter-spacing:.5px}
+td{padding:13px 14px;border-bottom:1px solid var(--b);font-size:14px;vertical-align:middle}
 tbody tr:hover{background:#f8fafc}
 tbody tr:last-child td{border-bottom:none}
-.empty-state{text-align:center;color:var(--text3);padding:40px 20px;font-size:14px}
+.empty-state{text-align:center;color:var(--t3);padding:40px 20px;font-size:14px}
 
-/* ===== Badges ===== */
+/* Badges */
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:500;white-space:nowrap}
-.badge-success{background:#ecfdf5;color:#059669}
-.badge-warning{background:#fffbeb;color:#d97706}
-.badge-danger{background:#fef2f2;color:#dc2626}
-.badge-info{background:#eff6ff;color:#2563eb}
-.badge-neutral{background:#f1f5f9;color:#64748b}
+.badge-s{background:#ecfdf5;color:#059669} .badge-w{background:#fffbeb;color:#d97706}
+.badge-d{background:#fef2f2;color:#dc2626} .badge-i{background:#eff6ff;color:#2563eb}
+.badge-n{background:#f1f5f9;color:#64748b}
 
-/* ===== Buttons ===== */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:9px 18px;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:500;cursor:pointer;transition:var(--transition);white-space:nowrap;line-height:1.4}
-.btn-primary{background:var(--primary);color:#fff}
-.btn-primary:hover{background:var(--primary-dark);box-shadow:var(--shadow-md)}
-.btn-outline{background:var(--surface);color:var(--text);border:1.5px solid var(--border)}
-.btn-outline:hover{background:var(--bg);border-color:#cbd5e1}
-.btn-sm{padding:5px 10px;font-size:12px}
-.btn-xs{padding:3px 8px;font-size:11px;border-radius:4px}
-.btn-danger{background:var(--danger);color:#fff}
-.btn-danger:hover{background:#dc2626}
-.btn-success{background:var(--success);color:#fff}
-.btn-success:hover{background:#059669}
-.btn-block{width:100%}
-.btn-group{display:flex;gap:6px}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:9px 18px;border:none;border-radius:var(--rs);font-size:14px;font-weight:500;cursor:pointer;transition:var(--tr);white-space:nowrap;line-height:1.4}
+.btn-p{background:var(--p);color:#fff} .btn-p:hover{background:var(--pd);box-shadow:var(--shm)}
+.btn-o{background:var(--sf);color:var(--t);border:1.5px solid var(--b)} .btn-o:hover{background:var(--bg);border-color:#cbd5e1}
+.btn-sm{padding:5px 10px;font-size:12px} .btn-xs{padding:3px 8px;font-size:11px;border-radius:4px}
+.btn-d{background:var(--d);color:#fff} .btn-d:hover{background:#dc2626}
+.btn-s{background:var(--s);color:#fff} .btn-s:hover{background:#059669}
+.btn-block{width:100%} .btn-group{display:flex;gap:6px}
 
-/* ===== Forms ===== */
+/* Forms */
 .field{margin-bottom:16px}
-.field label{display:block;font-size:13px;font-weight:600;margin-bottom:5px;color:var(--text)}
-.form-input{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);transition:var(--transition);outline:none;background:var(--surface)}
-.form-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
-textarea.form-input{resize:vertical;min-height:90px}
-select.form-input{cursor:pointer}
-.req{color:var(--danger)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;padding-top:18px;border-top:1px solid var(--border)}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+.form-input{width:100%;padding:10px 13px;border:1.5px solid var(--b);border-radius:var(--rs);font-size:14px;color:var(--t);transition:var(--tr);outline:none;background:var(--sf)}
+.form-input:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+textarea.form-input{resize:vertical;min-height:90px} select.form-input{cursor:pointer}
+.req{color:var(--d)} .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;padding-top:18px;border-top:1px solid var(--b)}
 
-/* ===== Modal ===== */
+/* Modal */
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,.45);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s ease}
-.modal{background:var(--surface);border-radius:var(--radius-lg);width:100%;max-width:580px;max-height:85vh;overflow-y:auto;box-shadow:var(--shadow-lg);animation:slideUp .25s ease}
-.modal-head{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);border-radius:var(--radius-lg) var(--radius-lg) 0 0;z-index:1}
+.modal{background:var(--sf);border-radius:var(--rl);width:100%;max-width:580px;max-height:85vh;overflow-y:auto;box-shadow:var(--shl);animation:slideUp .25s ease}
+.modal-head{padding:18px 24px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--sf);border-radius:var(--rl) var(--rl) 0 0;z-index:1}
 .modal-head h3{font-size:17px;font-weight:700}
-.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--text3);padding:4px 8px;border-radius:4px;transition:var(--transition);line-height:1}
-.modal-close:hover{background:var(--bg);color:var(--text)}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--t3);padding:4px 8px;border-radius:4px;transition:var(--tr);line-height:1}
+.modal-close:hover{background:var(--bg);color:var(--t)}
 .modal-body{padding:24px}
 
-/* ===== Toast ===== */
+/* Toast */
 .toast-wrap{position:fixed;top:24px;right:24px;z-index:2000;display:flex;flex-direction:column;gap:10px;pointer-events:none}
-.toast{background:var(--surface);border-radius:var(--radius);padding:13px 18px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px;font-size:14px;animation:slideIn .3s ease;min-width:280px;border-left:4px solid var(--primary);pointer-events:auto}
-.toast.success{border-left-color:var(--success)}
-.toast.error{border-left-color:var(--danger)}
-.toast.warning{border-left-color:var(--warning)}
+.toast{background:var(--sf);border-radius:var(--r);padding:13px 18px;box-shadow:var(--shl);display:flex;align-items:center;gap:10px;font-size:14px;animation:slideIn .3s ease;min-width:280px;border-left:4px solid var(--p);pointer-events:auto}
+.toast.s{border-left-color:var(--s)} .toast.e{border-left-color:var(--d)} .toast.w{border-left-color:var(--w)}
 .toast .toast-msg{flex:1}
-.toast .toast-close{background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;padding:2px 4px;line-height:1}
+.toast .toast-close{background:none;border:none;cursor:pointer;color:var(--t3);font-size:16px;padding:2px 4px;line-height:1}
 
-/* ===== Pagination ===== */
+/* Pagination */
 .pagination{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:20px}
-.pagination button{min-width:34px;height:34px;border:1.5px solid var(--border);background:var(--surface);border-radius:var(--radius-sm);cursor:pointer;font-size:13px;transition:var(--transition);color:var(--text);padding:0 8px}
-.pagination button:hover:not(:disabled){background:var(--primary-light);border-color:var(--primary);color:var(--primary)}
-.pagination button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.pagination button{min-width:34px;height:34px;border:1.5px solid var(--b);background:var(--sf);border-radius:var(--rs);cursor:pointer;font-size:13px;transition:var(--tr);color:var(--t);padding:0 8px}
+.pagination button:hover:not(:disabled){background:var(--pl);border-color:var(--p);color:var(--p)}
+.pagination button.active{background:var(--p);color:#fff;border-color:var(--p)}
 .pagination button:disabled{opacity:.35;cursor:not-allowed}
 
-/* ===== Detail Sections ===== */
-.detail-block{background:#f8fafc;border-radius:var(--radius-sm);padding:16px;margin-bottom:16px}
-.detail-block h4{font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+/* Detail */
+.detail-block{background:#f8fafc;border-radius:var(--rs);padding:16px;margin-bottom:16px}
+.detail-block h4{font-size:13px;font-weight:600;margin-bottom:10px;color:var(--t2);text-transform:uppercase;letter-spacing:.5px}
 .detail-row{display:flex;margin-bottom:8px;font-size:14px}
-.detail-row .lbl{width:72px;flex-shrink:0;color:var(--text2);font-weight:500}
-.detail-row .val{flex:1;color:var(--text)}
-.detail-content{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;font-size:14px;line-height:1.8;white-space:pre-wrap;color:var(--text)}
-.history-item{padding:10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:6px;font-size:13px}
-.history-item .h-action{font-weight:600;color:var(--primary)}
-.history-item .h-time{color:var(--text3);font-size:11px}
+.detail-row .lbl{width:72px;flex-shrink:0;color:var(--t2);font-weight:500}
+.detail-row .val{flex:1}
+.detail-content{background:var(--sf);border:1px solid var(--b);border-radius:var(--rs);padding:14px;font-size:14px;line-height:1.8;white-space:pre-wrap}
+.history-item{padding:10px 12px;background:var(--sf);border:1px solid var(--b);border-radius:var(--rs);margin-bottom:6px;font-size:13px}
+.history-item .h-action{font-weight:600;color:var(--p)}
+.history-item .h-time{color:var(--t3);font-size:11px}
 
-/* ===== Recent items (dashboard) ===== */
-.recent-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+/* Recent */
+.recent-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--b)}
 .recent-item:last-child{border-bottom:none;padding-bottom:0}
 .recent-item:first-child{padding-top:0}
 .recent-main{flex:1;margin-right:12px;min-width:0}
 .recent-title{font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.recent-meta{font-size:12px;color:var(--text3);margin-top:3px}
-.recent-meta .badge{margin-right:4px}
-
-/* Meta row (announcement detail) */
-.meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:18px;font-size:13px;color:var(--text2)}
-.meta-item{display:flex;align-items:center;gap:5px}
-
-/* View status */
-.view-status{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
+.recent-meta{font-size:12px;color:var(--t3);margin-top:3px}
+.meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:18px;font-size:13px;color:var(--t2)}
+.view-status{margin-top:18px;padding-top:18px;border-top:1px solid var(--b)}
 .view-status h4{font-size:13px;font-weight:600;margin-bottom:10px}
 
-/* ===== Animations ===== */
+/* Animations */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes slideIn{from{opacity:0;transform:translateX(50%)}to{opacity:1;transform:translateX(0)}}
 
-/* ===== Responsive ===== */
+/* Responsive */
 @media(max-width:768px){
-  .sidebar{width:var(--sidebar-collapsed)}
+  .sidebar{width:var(--sc)}
   .sidebar .sidebar-brand div,.sidebar .sidebar-nav a span:not(.ico),.sidebar .sidebar-footer{display:none}
-  .main-content{margin-left:var(--sidebar-collapsed)}
-  .page-wrap{padding:18px}
-  .topbar{padding:0 16px}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .dash-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-  .filter-row{flex-direction:column}
-  .filter-row .field{width:100%}
-  .page-head{flex-direction:column}
-  .modal{max-width:95%}
-  .user-info span:not(.user-avatar){display:none}
+  .main-content{margin-left:var(--sc)} .page-wrap{padding:18px} .topbar{padding:0 16px}
+  .stats{grid-template-columns:repeat(2,1fr)} .dash-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr} .filter-row{flex-direction:column}
+  .filter-row .field{width:100%} .page-head{flex-direction:column}
+  .modal{max-width:95%} .user-info span:not(.user-avatar){display:none}
 }
 @media(max-width:480px){
-  .stats{grid-template-columns:1fr}
-  .login-card{padding:32px 24px}
-  .topbar-time{display:none}
-  .btn-group{flex-wrap:wrap}
+  .stats{grid-template-columns:1fr} .login-card{padding:32px 24px}
+  .topbar-time{display:none} .btn-group{flex-wrap:wrap}
 }
-
-/* ===== Scrollbar ===== */
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
@@ -245,38 +203,24 @@ select.form-input{cursor:pointer}
 </head>
 <body>
 
-<!-- ===== Login Page ===== -->
+<!-- Login -->
 <div id="loginPage" class="login-page">
   <div class="login-card">
-    <div class="login-header">
-      <div class="icon">🏘️</div>
-      <h1>智慧社区管理端</h1>
-      <p>社区后台管理系统</p>
-    </div>
+    <div class="login-header"><div class="icon">🏘️</div><h1>智慧社区管理端</h1><p>社区后台管理系统</p></div>
     <form id="loginForm" class="login-form">
-      <div class="field">
-        <label>管理员账号</label>
-        <div class="input-wrap"><span class="pre">👤</span><input type="text" id="username" placeholder="请输入管理员账号" required></div>
-      </div>
-      <div class="field">
-        <label>登录密码</label>
-        <div class="input-wrap"><span class="pre">🔒</span><input type="password" id="password" placeholder="请输入密码" required></div>
-      </div>
+      <div class="field"><label>管理员账号</label><div class="input-wrap"><span class="pre">👤</span><input type="text" id="username" placeholder="请输入管理员账号" required></div></div>
+      <div class="field"><label>登录密码</label><div class="input-wrap"><span class="pre">🔒</span><input type="password" id="password" placeholder="请输入密码" required></div></div>
       <div class="login-error" id="loginError"></div>
-      <button type="submit" class="btn btn-primary btn-block">登 录</button>
+      <button type="submit" class="btn btn-p btn-block">登 录</button>
     </form>
     <div class="login-footer">默认账号: admin / 密码: admin123</div>
   </div>
 </div>
 
-<!-- ===== Main Layout ===== -->
+<!-- Main -->
 <div id="mainPage" class="main-layout" style="display:none">
-  <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand">
-      <span class="logo">🏘️</span>
-      <div><h2>智慧社区</h2><small>管理端</small></div>
-    </div>
+    <div class="sidebar-brand"><span class="logo">🏘️</span><div><h2>智慧社区</h2><small>管理端</small></div></div>
     <nav class="sidebar-nav">
       <a href="#" data-page="dashboard" class="active"><span class="ico">📊</span><span>工作台</span></a>
       <a href="#" data-page="announcement"><span class="ico">📢</span><span>公告发布</span></a>
@@ -288,40 +232,25 @@ select.form-input{cursor:pointer}
     </nav>
     <div class="sidebar-footer">v2.0</div>
   </aside>
-
-  <!-- Main Content -->
   <div class="main-content" id="mainContent">
-    <!-- Topbar -->
     <header class="topbar">
-      <div class="topbar-left">
-        <button class="menu-btn" id="menuToggle" title="折叠菜单">☰</button>
-        <span class="page-title" id="currentPageTitle">工作台</span>
-      </div>
-      <div class="topbar-right">
-        <span class="topbar-time" id="topbarTime"></span>
-        <div class="user-info">
-          <span class="user-avatar">👨‍💼</span>
-          <span id="currentUserName">管理员</span>
-          <button class="btn btn-sm btn-outline" id="logoutBtn">退出</button>
-        </div>
-      </div>
+      <div class="topbar-left"><button class="menu-btn" id="menuToggle" title="折叠菜单">☰</button><span class="page-title" id="currentPageTitle">工作台</span></div>
+      <div class="topbar-right"><span class="topbar-time" id="topbarTime"></span><div class="user-info"><span class="user-avatar">👨‍💼</span><span id="currentUserName">管理员</span><button class="btn btn-sm btn-o" id="logoutBtn">退出</button></div></div>
     </header>
-
-    <!-- Page Content -->
     <div class="page-wrap" id="pageContent">
 
       <!-- Dashboard -->
       <div id="page-dashboard" class="page active">
         <div class="page-head"><div><h2>工作台</h2><p>欢迎回来，以下是社区管理概览</p></div></div>
         <div class="stats">
-          <div class="stat-card" data-nav="announcement"><div class="stat-icon green">📢</div><div><div class="stat-val" id="statAnnouncements">0</div><div class="stat-label">公告总数</div></div></div>
-          <div class="stat-card" data-nav="complaint"><div class="stat-icon amber">📝</div><div><div class="stat-val" id="statComplaints">0</div><div class="stat-label">投诉总数</div></div></div>
-          <div class="stat-card" data-nav="complaint"><div class="stat-icon red">⏳</div><div><div class="stat-val" id="statPending">0</div><div class="stat-label">待处理投诉</div></div></div>
-          <div class="stat-card" data-nav="announcement"><div class="stat-icon blue">👁️</div><div><div class="stat-val" id="statTotalViews">0</div><div class="stat-label">公告总浏览量</div></div></div>
-          <div class="stat-card" data-nav="visitor"><div class="stat-icon purple">🛂</div><div><div class="stat-val" id="statVisitorPending">0</div><div class="stat-label">待审核访客</div></div></div>
-          <div class="stat-card" data-nav="parking"><div class="stat-icon indigo">🅿️</div><div><div class="stat-val" id="statParkingUsed">0</div><div class="stat-label">已使用车位</div></div></div>
-          <div class="stat-card" data-nav="repair"><div class="stat-icon amber">🔧</div><div><div class="stat-val" id="statRepairPending">0</div><div class="stat-label">待处理报修</div></div></div>
-          <div class="stat-card" data-nav="payment"><div class="stat-icon green">💰</div><div><div class="stat-val" id="statPaymentMonth">¥0</div><div class="stat-label">本月缴费总额</div></div></div>
+          <div class="stat-card" data-nav="announcement"><div class="stat-icon g">📢</div><div><div class="stat-val" id="statAnnouncements">0</div><div class="stat-label">公告总数</div></div></div>
+          <div class="stat-card" data-nav="complaint"><div class="stat-icon a">📝</div><div><div class="stat-val" id="statComplaints">0</div><div class="stat-label">投诉总数</div></div></div>
+          <div class="stat-card" data-nav="complaint"><div class="stat-icon r">⏳</div><div><div class="stat-val" id="statPending">0</div><div class="stat-label">待处理投诉</div></div></div>
+          <div class="stat-card" data-nav="announcement"><div class="stat-icon b">👁️</div><div><div class="stat-val" id="statTotalViews">0</div><div class="stat-label">公告总浏览量</div></div></div>
+          <div class="stat-card" data-nav="visitor"><div class="stat-icon p">🛂</div><div><div class="stat-val" id="statVisitorPending">0</div><div class="stat-label">待审核访客</div></div></div>
+          <div class="stat-card" data-nav="parking"><div class="stat-icon i">🅿️</div><div><div class="stat-val" id="statParkingUsed">0</div><div class="stat-label">已使用车位</div></div></div>
+          <div class="stat-card" data-nav="repair"><div class="stat-icon a">🔧</div><div><div class="stat-val" id="statRepairPending">0</div><div class="stat-label">待处理报修</div></div></div>
+          <div class="stat-card" data-nav="payment"><div class="stat-icon g">💰</div><div><div class="stat-val" id="statPaymentMonth">¥0</div><div class="stat-label">本月缴费总额</div></div></div>
         </div>
         <div class="dash-grid">
           <div class="card"><div class="card-head"><h3>📢 最近公告</h3><a href="#" data-page="announcement" class="link">查看全部 →</a></div><div class="card-body" id="recentAnnouncements"><div class="empty-state">暂无公告</div></div></div>
@@ -331,16 +260,13 @@ select.form-input{cursor:pointer}
 
       <!-- Announcements -->
       <div id="page-announcement" class="page">
-        <div class="page-head"><div><h2>📢 公告发布</h2><p>管理社区公告信息，发布至用户端供居民查看</p></div><button class="btn btn-primary" id="btnNewAnnouncement">+ 发布新公告</button></div>
+        <div class="page-head"><div><h2>📢 公告发布</h2><p>管理社区公告信息，发布至用户端供居民查看</p></div><button class="btn btn-p" id="btnNewAnnouncement">+ 发布新公告</button></div>
         <div class="filter-bar"><div class="filter-row">
           <div class="field"><input type="text" id="announcementSearch" placeholder="搜索公告标题..." class="form-input"></div>
           <div class="field"><select id="announcementCategory" class="form-input"><option value="">全部类别</option><option value="通知">通知</option><option value="活动">活动</option><option value="紧急">紧急</option><option value="维护">维护</option></select></div>
-          <button class="btn btn-outline" id="btnClearAnnouncementFilter">清除筛选</button>
+          <button class="btn btn-o" id="btnClearAnnouncementFilter">清除筛选</button>
         </div></div>
-        <div class="card"><div class="card-body">
-          <div class="table-wrap"><table><thead><tr><th>序号</th><th>标题</th><th>类别</th><th>发布时间</th><th>浏览数</th><th>状态</th><th>操作</th></tr></thead><tbody id="announcementTableBody"><tr><td colspan="7" class="empty-state">暂无公告数据</td></tr></tbody></table></div>
-          <div class="pagination" id="announcementPagination"></div>
-        </div></div>
+        <div class="card"><div class="card-body"><div class="table-wrap"><table><thead><tr><th>序号</th><th>标题</th><th>类别</th><th>发布时间</th><th>浏览数</th><th>状态</th><th>操作</th></tr></thead><tbody id="announcementTableBody"></tbody></table></div><div class="pagination" id="announcementPagination"></div></div></div>
       </div>
 
       <!-- Complaints -->
@@ -349,47 +275,38 @@ select.form-input{cursor:pointer}
         <div class="filter-bar"><div class="filter-row">
           <div class="field"><input type="text" id="complaintSearch" placeholder="搜索投诉内容或投诉人..." class="form-input"></div>
           <div class="field"><select id="complaintStatus" class="form-input"><option value="">全部状态</option><option value="pending">待处理</option><option value="processing">处理中</option><option value="resolved">已解决</option></select></div>
-          <button class="btn btn-outline" id="btnClearComplaintFilter">清除筛选</button>
+          <button class="btn btn-o" id="btnClearComplaintFilter">清除筛选</button>
         </div></div>
-        <div class="card"><div class="card-body">
-          <div class="table-wrap"><table><thead><tr><th>序号</th><th>投诉人</th><th>投诉内容</th><th>联系方式</th><th>提交时间</th><th>状态</th><th>操作</th></tr></thead><tbody id="complaintTableBody"><tr><td colspan="7" class="empty-state">暂无投诉数据</td></tr></tbody></table></div>
-          <div class="pagination" id="complaintPagination"></div>
-        </div></div>
+        <div class="card"><div class="card-body"><div class="table-wrap"><table><thead><tr><th>序号</th><th>投诉人</th><th>投诉内容</th><th>联系方式</th><th>提交时间</th><th>状态</th><th>操作</th></tr></thead><tbody id="complaintTableBody"></tbody></table></div><div class="pagination" id="complaintPagination"></div></div></div>
       </div>
 
-      <!-- Visitor Passes -->
+      <!-- Visitors -->
       <div id="page-visitor" class="page">
         <div class="page-head"><div><h2>🛂 访客通行</h2><p>审核处理用户提交的访客通行申请</p></div></div>
         <div class="filter-bar"><div class="filter-row">
           <div class="field"><input type="text" id="visitorSearch" placeholder="搜索访客或申请人..." class="form-input"></div>
           <div class="field"><select id="visitorStatus" class="form-input"><option value="">全部状态</option><option value="pending">待审核</option><option value="approved">已通过</option><option value="rejected">已拒绝</option></select></div>
-          <button class="btn btn-outline" id="btnClearVisitorFilter">清除筛选</button>
+          <button class="btn btn-o" id="btnClearVisitorFilter">清除筛选</button>
         </div></div>
-        <div class="card"><div class="card-body">
-          <div class="table-wrap"><table><thead><tr><th>序号</th><th>申请人</th><th>访客姓名</th><th>来访日期</th><th>车牌号</th><th>提交时间</th><th>状态</th><th>操作</th></tr></thead><tbody id="visitorTableBody"><tr><td colspan="8" class="empty-state">暂无访客通行数据</td></tr></tbody></table></div>
-          <div class="pagination" id="visitorPagination"></div>
-        </div></div>
+        <div class="card"><div class="card-body"><div class="table-wrap"><table><thead><tr><th>序号</th><th>申请人</th><th>访客姓名</th><th>来访日期</th><th>车牌号</th><th>提交时间</th><th>状态</th><th>操作</th></tr></thead><tbody id="visitorTableBody"></tbody></table></div><div class="pagination" id="visitorPagination"></div></div></div>
       </div>
 
       <!-- Parking -->
       <div id="page-parking" class="page">
         <div class="page-head"><div><h2>🅿️ 车位管理</h2><p>查询管理社区车位信息与统计数据</p></div></div>
         <div class="stats">
-          <div class="stat-card"><div class="stat-icon indigo">🚗</div><div><div class="stat-val" id="parkingTotal">0</div><div class="stat-label">车位总数</div></div></div>
-          <div class="stat-card"><div class="stat-icon green">✅</div><div><div class="stat-val" id="parkingAvailable">0</div><div class="stat-label">空闲车位</div></div></div>
-          <div class="stat-card"><div class="stat-icon amber">🚙</div><div><div class="stat-val" id="parkingOccupied">0</div><div class="stat-label">已占用车位</div></div></div>
-          <div class="stat-card"><div class="stat-icon red">🔧</div><div><div class="stat-val" id="parkingMaintenance">0</div><div class="stat-label">维护中</div></div></div>
+          <div class="stat-card"><div class="stat-icon i">🚗</div><div><div class="stat-val" id="parkingTotal">0</div><div class="stat-label">车位总数</div></div></div>
+          <div class="stat-card"><div class="stat-icon g">✅</div><div><div class="stat-val" id="parkingAvailable">0</div><div class="stat-label">空闲车位</div></div></div>
+          <div class="stat-card"><div class="stat-icon a">🚙</div><div><div class="stat-val" id="parkingOccupied">0</div><div class="stat-label">已占用车位</div></div></div>
+          <div class="stat-card"><div class="stat-icon r">🔧</div><div><div class="stat-val" id="parkingMaintenance">0</div><div class="stat-label">维护中</div></div></div>
         </div>
         <div class="filter-bar"><div class="filter-row">
           <div class="field"><input type="text" id="parkingSearch" placeholder="搜索业主、车牌或区域..." class="form-input"></div>
           <div class="field"><select id="parkingStatusFilter" class="form-input"><option value="">全部状态</option><option value="available">空闲</option><option value="occupied">已占用</option><option value="reserved">已预留</option><option value="maintenance">维护中</option></select></div>
           <div class="field"><select id="parkingTypeFilter" class="form-input"><option value="">全部类型</option><option value="standard">标准车位</option><option value="electric">新能源充电</option><option value="disabled">无障碍车位</option></select></div>
-          <button class="btn btn-outline" id="btnClearParkingFilter">清除筛选</button>
+          <button class="btn btn-o" id="btnClearParkingFilter">清除筛选</button>
         </div></div>
-        <div class="card"><div class="card-body">
-          <div class="table-wrap"><table><thead><tr><th>序号</th><th>车位编号</th><th>所在区域</th><th>类型</th><th>状态</th><th>业主</th><th>车牌号</th><th>租约到期</th></tr></thead><tbody id="parkingTableBody"><tr><td colspan="8" class="empty-state">暂无车位数据</td></tr></tbody></table></div>
-          <div class="pagination" id="parkingPagination"></div>
-        </div></div>
+        <div class="card"><div class="card-body"><div class="table-wrap"><table><thead><tr><th>序号</th><th>车位编号</th><th>所在区域</th><th>类型</th><th>状态</th><th>业主</th><th>车牌号</th><th>租约到期</th></tr></thead><tbody id="parkingTableBody"></tbody></table></div><div class="pagination" id="parkingPagination"></div></div></div>
       </div>
 
       <!-- Repairs -->
@@ -399,773 +316,233 @@ select.form-input{cursor:pointer}
           <div class="field"><input type="text" id="repairSearch" placeholder="搜索申请人或报修内容..." class="form-input"></div>
           <div class="field"><select id="repairStatus" class="form-input"><option value="">全部状态</option><option value="pending">待处理</option><option value="processing">处理中</option><option value="resolved">已完成</option></select></div>
           <div class="field"><select id="repairType" class="form-input"><option value="">全部类型</option><option value="水电维修">水电维修</option><option value="房屋维修">房屋维修</option><option value="管道疏通">管道疏通</option><option value="家电维修">家电维修</option><option value="公共区域">公共区域</option></select></div>
-          <button class="btn btn-outline" id="btnClearRepairFilter">清除筛选</button>
+          <button class="btn btn-o" id="btnClearRepairFilter">清除筛选</button>
         </div></div>
-        <div class="card"><div class="card-body">
-          <div class="table-wrap"><table><thead><tr><th>序号</th><th>申请人</th><th>报修类型</th><th>报修内容</th><th>提交时间</th><th>状态</th><th>操作</th></tr></thead><tbody id="repairTableBody"><tr><td colspan="7" class="empty-state">暂无报修数据</td></tr></tbody></table></div>
-          <div class="pagination" id="repairPagination"></div>
-        </div></div>
+        <div class="card"><div class="card-body"><div class="table-wrap"><table><thead><tr><th>序号</th><th>申请人</th><th>报修类型</th><th>报修内容</th><th>提交时间</th><th>状态</th><th>操作</th></tr></thead><tbody id="repairTableBody"></tbody></table></div><div class="pagination" id="repairPagination"></div></div></div>
       </div>
 
       <!-- Payments -->
       <div id="page-payment" class="page">
         <div class="page-head"><div><h2>💰 缴费记录</h2><p>查询用户在系统内的缴费情况</p></div></div>
         <div class="stats">
-          <div class="stat-card"><div class="stat-icon green">📋</div><div><div class="stat-val" id="paymentTotalCount">0</div><div class="stat-label">缴费总笔数</div></div></div>
-          <div class="stat-card"><div class="stat-icon blue">💵</div><div><div class="stat-val" id="paymentTotalAmount">¥0</div><div class="stat-label">缴费总额</div></div></div>
-          <div class="stat-card"><div class="stat-icon amber">📊</div><div><div class="stat-val" id="paymentThisMonth">¥0</div><div class="stat-label">本月缴费</div></div></div>
-          <div class="stat-card"><div class="stat-icon red">⏳</div><div><div class="stat-val" id="paymentPending">0</div><div class="stat-label">待缴费</div></div></div>
+          <div class="stat-card"><div class="stat-icon g">📋</div><div><div class="stat-val" id="paymentTotalCount">0</div><div class="stat-label">缴费总笔数</div></div></div>
+          <div class="stat-card"><div class="stat-icon b">💵</div><div><div class="stat-val" id="paymentTotalAmount">¥0</div><div class="stat-label">缴费总额</div></div></div>
+          <div class="stat-card"><div class="stat-icon a">📊</div><div><div class="stat-val" id="paymentThisMonth">¥0</div><div class="stat-label">本月缴费</div></div></div>
+          <div class="stat-card"><div class="stat-icon r">⏳</div><div><div class="stat-val" id="paymentPending">0</div><div class="stat-label">待缴费</div></div></div>
         </div>
         <div class="filter-bar"><div class="filter-row">
           <div class="field"><input type="text" id="paymentSearch" placeholder="搜索业主姓名或住址..." class="form-input"></div>
           <div class="field"><select id="paymentTypeFilter" class="form-input"><option value="">全部类型</option><option value="物业费">物业费</option><option value="停车费">停车费</option><option value="水电费">水电费</option><option value="燃气费">燃气费</option><option value="维修费">维修费</option></select></div>
           <div class="field"><select id="paymentStatusFilter2" class="form-input"><option value="">全部状态</option><option value="paid">已缴费</option><option value="pending">待缴费</option><option value="overdue">已逾期</option></select></div>
-          <button class="btn btn-outline" id="btnClearPaymentFilter">清除筛选</button>
+          <button class="btn btn-o" id="btnClearPaymentFilter">清除筛选</button>
         </div></div>
-        <div class="card"><div class="card-body">
-          <div class="table-wrap"><table><thead><tr><th>序号</th><th>业主</th><th>住址</th><th>费用类型</th><th>金额</th><th>缴费时间</th><th>状态</th></tr></thead><tbody id="paymentTableBody"><tr><td colspan="7" class="empty-state">暂无缴费记录</td></tr></tbody></table></div>
-          <div class="pagination" id="paymentPagination"></div>
-        </div></div>
+        <div class="card"><div class="card-body"><div class="table-wrap"><table><thead><tr><th>序号</th><th>业主</th><th>住址</th><th>费用类型</th><th>金额</th><th>缴费时间</th><th>状态</th></tr></thead><tbody id="paymentTableBody"></tbody></table></div><div class="pagination" id="paymentPagination"></div></div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== Modals ===== -->
-<!-- Announcement Form Modal -->
+<!-- Modals -->
 <div id="announcementModal" class="modal-overlay" style="display:none">
-  <div class="modal">
-    <div class="modal-head"><h3 id="announcementModalTitle">发布新公告</h3><button class="modal-close">✕</button></div>
-    <div class="modal-body">
-      <form id="announcementForm">
-        <input type="hidden" id="announcementId">
-        <div class="field"><label>公告标题 <span class="req">*</span></label><input type="text" id="announcementTitle" class="form-input" placeholder="请输入公告标题" required></div>
-        <div class="form-row">
-          <div class="field"><label>公告类别 <span class="req">*</span></label><select id="announcementCategorySelect" class="form-input" required><option value="">请选择类别</option><option value="通知">通知</option><option value="活动">活动</option><option value="紧急">紧急</option><option value="维护">维护</option></select></div>
-          <div class="field"><label>优先级</label><select id="announcementPriority" class="form-input"><option value="normal">普通</option><option value="high">重要</option><option value="urgent">紧急</option></select></div>
-        </div>
-        <div class="field"><label>公告内容 <span class="req">*</span></label><textarea id="announcementContent" class="form-input" rows="5" placeholder="请输入公告详细内容..." required></textarea></div>
-        <div class="form-actions"><button type="button" class="btn btn-outline" id="cancelAnnouncement">取消</button><button type="submit" class="btn btn-primary">保存并发布</button></div>
-      </form>
-    </div>
-  </div>
+  <div class="modal"><div class="modal-head"><h3 id="announcementModalTitle">发布新公告</h3><button class="modal-close">✕</button></div>
+  <div class="modal-body">
+    <form id="announcementForm"><input type="hidden" id="announcementId">
+      <div class="field"><label>公告标题 <span class="req">*</span></label><input type="text" id="announcementTitle" class="form-input" placeholder="请输入公告标题" required></div>
+      <div class="form-row">
+        <div class="field"><label>公告类别 <span class="req">*</span></label><select id="announcementCategorySelect" class="form-input" required><option value="">请选择类别</option><option value="通知">通知</option><option value="活动">活动</option><option value="紧急">紧急</option><option value="维护">维护</option></select></div>
+        <div class="field"><label>优先级</label><select id="announcementPriority" class="form-input"><option value="normal">普通</option><option value="high">重要</option><option value="urgent">紧急</option></select></div>
+      </div>
+      <div class="field"><label>公告内容 <span class="req">*</span></label><textarea id="announcementContent" class="form-input" rows="5" placeholder="请输入公告详细内容..." required></textarea></div>
+      <div class="form-actions"><button type="button" class="btn btn-o" id="cancelAnnouncement">取消</button><button type="submit" class="btn btn-p">保存并发布</button></div>
+    </form>
+  </div></div>
 </div>
-
-<!-- Announcement Detail Modal -->
-<div id="announcementDetailModal" class="modal-overlay" style="display:none">
-  <div class="modal"><div class="modal-head"><h3>公告详情</h3><button class="modal-close">✕</button></div><div class="modal-body" id="announcementDetailContent"></div></div>
-</div>
-
-<!-- Complaint Modal -->
-<div id="complaintModal" class="modal-overlay" style="display:none">
-  <div class="modal"><div class="modal-head"><h3>投诉详情与处理</h3><button class="modal-close">✕</button></div><div class="modal-body" id="complaintDetailContent"></div></div>
-</div>
-
-<!-- Visitor Modal -->
-<div id="visitorModal" class="modal-overlay" style="display:none">
-  <div class="modal"><div class="modal-head"><h3>访客通行审核</h3><button class="modal-close">✕</button></div><div class="modal-body" id="visitorDetailContent"></div></div>
-</div>
-
-<!-- Repair Modal -->
-<div id="repairModal" class="modal-overlay" style="display:none">
-  <div class="modal"><div class="modal-head"><h3>报事处理</h3><button class="modal-close">✕</button></div><div class="modal-body" id="repairDetailContent"></div></div>
-</div>
-
-<!-- Toast container -->
+<div id="announcementDetailModal" class="modal-overlay" style="display:none"><div class="modal"><div class="modal-head"><h3>公告详情</h3><button class="modal-close">✕</button></div><div class="modal-body" id="announcementDetailContent"></div></div></div>
+<div id="complaintModal" class="modal-overlay" style="display:none"><div class="modal"><div class="modal-head"><h3>投诉详情与处理</h3><button class="modal-close">✕</button></div><div class="modal-body" id="complaintDetailContent"></div></div></div>
+<div id="visitorModal" class="modal-overlay" style="display:none"><div class="modal"><div class="modal-head"><h3>访客通行审核</h3><button class="modal-close">✕</button></div><div class="modal-body" id="visitorDetailContent"></div></div></div>
+<div id="repairModal" class="modal-overlay" style="display:none"><div class="modal"><div class="modal-head"><h3>报事处理</h3><button class="modal-close">✕</button></div><div class="modal-body" id="repairDetailContent"></div></div></div>
 <div class="toast-wrap" id="toastContainer"></div>
 
 <script>
-/* ===================================================================
-   智慧社区管理端 v2.0 — Data Layer (DB Module)
-   =================================================================== */
 const DB = (() => {
-  'use strict';
-
-  const K = {
-    ANN: 'sc_announcements', CMP: 'sc_complaints', VIS: 'sc_visitor_passes',
-    PARK: 'sc_parking_spots', REP: 'sc_repair_requests', PAY: 'sc_payment_records',
-    USR: 'sc_users', ADM: 'sc_admin', CUR: 'sc_current_user'
-  };
-
+  const K = { ANN:'sc_announcements', CMP:'sc_complaints', VIS:'sc_visitor_passes', PARK:'sc_parking_spots', REP:'sc_repair_requests', PAY:'sc_payment_records', USR:'sc_users', ADM:'sc_admin', CUR:'sc_current_user' };
   const get = k => JSON.parse(localStorage.getItem(k) || 'null');
   const set = (k, v) => localStorage.setItem(k, JSON.stringify(v));
-  const coll = k => { const d = get(k); return d || []; };
+  const coll = k => get(k) || [];
   const save = (k, v) => set(k, v);
   const gid = p => p + '_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 6);
   const now = () => new Date().toISOString();
+  const addH = (arr, action, note) => arr.push({ action, operator:'管理员', time:now(), note:note||'' });
 
-  // -- Seed Data --
   function seed() {
-    if (!get(K.ADM)) set(K.ADM, { id: 'admin_001', username: 'admin', password: 'admin123', name: '社区管理员', role: 'admin', createdAt: now() });
-    if (!get(K.USR)) set(K.USR, []);
-    if (!get(K.ANN)) set(K.ANN, []);
-    if (!get(K.CMP)) set(K.CMP, []);
-    if (!get(K.VIS)) set(K.VIS, []);
-    if (!get(K.PARK)) set(K.PARK, []);
-    if (!get(K.REP)) set(K.REP, []);
-    if (!get(K.PAY)) set(K.PAY, []);
+    if (!get(K.ADM)) set(K.ADM, { id:'admin_001', username:'admin', password:'admin123', name:'社区管理员', role:'admin', createdAt:now() });
+    if (!get(K.USR)) set(K.USR, [
+      { id:'u_001', name:'张三', building:'1栋', unit:'1单元', room:'101', phone:'138****1234' },
+      { id:'u_002', name:'李四', building:'2栋', unit:'2单元', room:'205', phone:'139****5678' },
+      { id:'u_003', name:'王五', building:'3栋', unit:'1单元', room:'302', phone:'136****9012' }
+    ]);
+    const t = new Date();
+    if (!get(K.ANN)) set(K.ANN, [
+      { id:'a_001', title:'关于小区停车位改造的通知', content:'各位业主：\n\n物业公司将于7月1日至15日对地下停车场B区进行升级改造，包括重新铺设地坪漆、升级照明、增加充电桩。施工期间B区暂停使用，请相关车主将车辆移至地面临时停车场。\n\n如有疑问请联系物业服务中心。', category:'通知', priority:'normal', status:'published', views:42, viewedBy:['u_001','u_003'], createdAt:new Date(t.getTime()-4*86400000).toISOString(), updatedAt:new Date(t.getTime()-4*86400000).toISOString() },
+      { id:'a_002', title:'社区夏日亲子运动会活动通知', content:'亲爱的业主朋友们：\n\n智慧社区将举办"欢乐夏日"亲子运动会！\n📅 时间：7月8日（周六）9:00-12:00\n📍 地点：社区中心广场\n\n活动项目：亲子接力赛、趣味拔河、DIY手工区\n🏆 参与即有礼品，欢迎报名！', category:'活动', priority:'normal', status:'published', views:18, viewedBy:['u_001'], createdAt:new Date(t.getTime()-86400000).toISOString(), updatedAt:new Date(t.getTime()-86400000).toISOString() }
+    ]);
+    if (!get(K.CMP)) set(K.CMP, [
+      { id:'c_001', userId:'u_001', userName:'张三', userPhone:'138****1234', building:'1栋1单元101', content:'楼上每天晚上11点后还在装修，噪音非常大，严重影响休息。已和楼上业主沟通但没改善，希望物业出面协调解决。', category:'噪音扰民', status:'pending', response:'', responseHistory:[], createdAt:new Date(t.getTime()-2*86400000).toISOString(), updatedAt:new Date(t.getTime()-2*86400000).toISOString() },
+      { id:'c_002', userId:'u_002', userName:'李四', userPhone:'139****5678', building:'2栋2单元205', content:'小区地下车库灯坏了好几个，晚上停车视线很差，存在安全隐患。请尽快安排维修。', category:'设施维修', status:'resolved', response:'已安排电工更换故障灯具，并检查了其他区域照明情况。', responseHistory:[{ action:'标记为处理中', operator:'管理员', time:new Date(t.getTime()-4*86400000).toISOString(), note:'已通知工程部' },{ action:'回复并解决', operator:'管理员', time:new Date(t.getTime()-3*86400000).toISOString(), note:'已更换故障灯具。' }], createdAt:new Date(t.getTime()-5*86400000).toISOString(), updatedAt:new Date(t.getTime()-3*86400000).toISOString() }
+    ]);
+    if (!get(K.VIS)) set(K.VIS, [
+      { id:'v_001', applicantName:'张三', applicantPhone:'138****1234', applicantBuilding:'1栋1单元101', visitorName:'张伟', visitorPhone:'150****8899', visitorCount:2, plateNumber:'京A88888', visitDate:'2026-06-25', visitReason:'探望父母', status:'pending', responseNote:'', responseHistory:[], createdAt:new Date(t.getTime()-.2*86400000).toISOString(), updatedAt:new Date(t.getTime()-.2*86400000).toISOString() }
+    ]);
+    if (!get(K.PARK)) set(K.PARK, [
+      { id:'p_001', area:'A区地下车库', spotNumber:'A-001', type:'standard', status:'occupied', ownerName:'张三', ownerPhone:'138****1234', ownerBuilding:'1栋1单元101', plateNumber:'京A11111', rentExpiry:'2027-03-15' },
+      { id:'p_002', area:'A区地下车库', spotNumber:'A-002', type:'standard', status:'available', ownerName:'', ownerPhone:'', ownerBuilding:'', plateNumber:'', rentExpiry:'' },
+      { id:'p_003', area:'A区地下车库', spotNumber:'A-003', type:'electric', status:'occupied', ownerName:'王五', ownerPhone:'136****9012', ownerBuilding:'3栋1单元302', plateNumber:'京C33333', rentExpiry:'2027-06-30' },
+      { id:'p_004', area:'B区地下车库', spotNumber:'B-001', type:'standard', status:'available', ownerName:'', ownerPhone:'', ownerBuilding:'', plateNumber:'', rentExpiry:'' },
+      { id:'p_005', area:'B区地下车库', spotNumber:'B-002', type:'disabled', status:'occupied', ownerName:'李四', ownerPhone:'139****5678', ownerBuilding:'2栋2单元205', plateNumber:'京B22222', rentExpiry:'2026-12-01' },
+      { id:'p_006', area:'C区地面', spotNumber:'C-001', type:'standard', status:'maintenance', ownerName:'', ownerPhone:'', ownerBuilding:'', plateNumber:'', rentExpiry:'' }
+    ]);
+    if (!get(K.REP)) set(K.REP, [
+      { id:'r_001', applicantName:'王五', applicantPhone:'136****9012', applicantBuilding:'3栋1单元302', repairType:'水电维修', content:'厨房水龙头漏水严重，已滴了三天。水阀关了不方便做饭，请尽快安排师傅上门维修。', status:'pending', response:'', responseHistory:[], createdAt:new Date(t.getTime()-.5*86400000).toISOString(), updatedAt:new Date(t.getTime()-.5*86400000).toISOString() }
+    ]);
+    if (!get(K.PAY)) set(K.PAY, [
+      { id:'pay_001', userId:'u_001', userName:'张三', userBuilding:'1栋1单元101', type:'物业费', amount:2850, period:'2026年7-12月', status:'paid', payTime:new Date(t.getTime()-5*86400000).toISOString(), method:'微信支付' },
+      { id:'pay_002', userId:'u_002', userName:'李四', userBuilding:'2栋2单元205', type:'停车费', amount:1800, period:'2026年7-9月', status:'paid', payTime:new Date(t.getTime()-3*86400000).toISOString(), method:'支付宝' },
+      { id:'pay_003', userId:'u_003', userName:'王五', userBuilding:'3栋1单元302', type:'物业费', amount:3120, period:'2026年7-12月', status:'pending', payTime:'', method:'' }
+    ]);
   }
 
-  // -- Auth --
-  function login(u, p) {
-    const adm = get(K.ADM) || {};
-    if (adm.username === u && adm.password === p) {
-      const s = { id: adm.id, username: adm.username, name: adm.name, role: adm.role, loginTime: now() };
-      set(K.CUR, s);
-      return { success: true, user: s };
-    }
-    return { success: false, message: '账号或密码错误' };
-  }
+  function login(u, p) { const adm=get(K.ADM)||{}; if(adm.username===u&&adm.password===p){ const s={ id:adm.id, username:adm.username, name:adm.name, role:adm.role, loginTime:now() }; set(K.CUR,s); return{success:true,user:s}; } return{success:false,message:'账号或密码错误'}; }
   function logout() { localStorage.removeItem(K.CUR); }
   function getCurrentUser() { return get(K.CUR); }
   function isLoggedIn() { return !!get(K.CUR); }
 
-  // -- Helpers --
-  function addHistory(arr, action, note) {
-    arr.push({ action, operator: '管理员', time: now(), note: note || '' });
-  }
+  function getAnnouncements() { return coll(K.ANN).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)); }
+  function getAnnouncementById(id) { return coll(K.ANN).find(x=>x.id===id)||null; }
+  function createAnnouncement(d) { const list=coll(K.ANN),n=now(); const item={ id:gid('a'), title:d.title, content:d.content, category:d.category, priority:d.priority||'normal', status:'published', views:0, viewedBy:[], createdAt:n, updatedAt:n }; list.push(item); save(K.ANN,list); return item; }
+  function updateAnnouncement(id, d) { const list=coll(K.ANN),i=list.findIndex(x=>x.id===id); if(i===-1)return null; Object.assign(list[i],{ title:d.title, content:d.content, category:d.category, priority:d.priority, updatedAt:now() }); save(K.ANN,list); return list[i]; }
+  function deleteAnnouncement(id) { const list=coll(K.ANN),f=list.filter(x=>x.id!==id); if(f.length===list.length)return false; save(K.ANN,f); return true; }
+  function getAnnouncementStats() { const list=coll(K.ANN); return{ total:list.length, totalViews:list.reduce((s,a)=>s+a.views,0) }; }
 
-  // -- Announcements --
-  function getAnnouncements() { return coll(K.ANN).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); }
-  function getAnnouncementById(id) { return coll(K.ANN).find(x => x.id === id) || null; }
-  function createAnnouncement(d) {
-    const list = coll(K.ANN), n = now();
-    const item = { id: gid('a'), title: d.title, content: d.content, category: d.category, priority: d.priority || 'normal', status: 'published', views: 0, viewedBy: [], createdAt: n, updatedAt: n };
-    list.push(item); save(K.ANN, list); return item;
-  }
-  function updateAnnouncement(id, d) {
-    const list = coll(K.ANN), i = list.findIndex(x => x.id === id);
-    if (i === -1) return null;
-    Object.assign(list[i], { title: d.title, content: d.content, category: d.category, priority: d.priority, updatedAt: now() });
-    save(K.ANN, list); return list[i];
-  }
-  function deleteAnnouncement(id) {
-    const list = coll(K.ANN), f = list.filter(x => x.id !== id);
-    if (f.length === list.length) return false;
-    save(K.ANN, f); return true;
-  }
-  function getAnnouncementStats() {
-    const list = coll(K.ANN);
-    return { total: list.length, totalViews: list.reduce((s, a) => s + a.views, 0), byCategory: list.reduce((acc, a) => { acc[a.category] = (acc[a.category] || 0) + 1; return acc; }, {}) };
-  }
+  function getComplaints() { return coll(K.CMP).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)); }
+  function getComplaintById(id) { return coll(K.CMP).find(x=>x.id===id)||null; }
+  function updateComplaint(id, { status, response }={}) { const list=coll(K.CMP),i=list.findIndex(x=>x.id===id); if(i===-1)return null; if(response){ list[i].response=response; list[i].status='resolved'; addH(list[i].responseHistory,'回复并解决',response); } else if(status){ list[i].status=status; const stMap={ pending:'标记为待处理', processing:'标记为处理中', resolved:'标记为已解决' }; addH(list[i].responseHistory,stMap[status]||'状态更新',''); } list[i].updatedAt=now(); save(K.CMP,list); return list[i]; }
+  function getComplaintStats() { const list=coll(K.CMP); return{ total:list.length, pending:list.filter(c=>c.status==='pending').length, processing:list.filter(c=>c.status==='processing').length, resolved:list.filter(c=>c.status==='resolved').length }; }
 
-  // -- Complaints --
-  function getComplaints() { return coll(K.CMP).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); }
-  function getComplaintById(id) { return coll(K.CMP).find(x => x.id === id) || null; }
-  function updateComplaint(id, { status, response } = {}) {
-    const list = coll(K.CMP), i = list.findIndex(x => x.id === id);
-    if (i === -1) return null;
-    if (response) { list[i].response = response; list[i].status = 'resolved'; addHistory(list[i].responseHistory, '回复并解决', response); }
-    else if (status) { list[i].status = status; const stMap = { pending: '标记为待处理', processing: '标记为处理中', resolved: '标记为已解决' }; addHistory(list[i].responseHistory, stMap[status] || '状态更新', ''); }
-    list[i].updatedAt = now(); save(K.CMP, list); return list[i];
-  }
-  function getComplaintStats() {
-    const list = coll(K.CMP);
-    return { total: list.length, pending: list.filter(c => c.status === 'pending').length, processing: list.filter(c => c.status === 'processing').length, resolved: list.filter(c => c.status === 'resolved').length };
-  }
-
-  // -- Users --
   function getUsers() { return coll(K.USR); }
-  function getUserById(id) { return coll(K.USR).find(u => u.id === id) || null; }
 
-  // -- Visitor Passes --
-  function getVisitorPasses() { return coll(K.VIS).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); }
-  function getVisitorPassById(id) { return coll(K.VIS).find(x => x.id === id) || null; }
-  function approveVisitorPass(id, note) {
-    const list = coll(K.VIS), i = list.findIndex(x => x.id === id);
-    if (i === -1) return null;
-    list[i].status = 'approved'; list[i].responseNote = note || '审核通过'; list[i].updatedAt = now();
-    addHistory(list[i].responseHistory, '审核通过', note || '审核通过');
-    save(K.VIS, list); return list[i];
-  }
-  function rejectVisitorPass(id, note) {
-    const list = coll(K.VIS), i = list.findIndex(x => x.id === id);
-    if (i === -1) return null;
-    list[i].status = 'rejected'; list[i].responseNote = note || '审核未通过'; list[i].updatedAt = now();
-    addHistory(list[i].responseHistory, '审核拒绝', note || '审核未通过');
-    save(K.VIS, list); return list[i];
-  }
-  function getVisitorPassStats() {
-    const list = coll(K.VIS);
-    return { total: list.length, pending: list.filter(v => v.status === 'pending').length, approved: list.filter(v => v.status === 'approved').length, rejected: list.filter(v => v.status === 'rejected').length };
-  }
+  function getVisitorPasses() { return coll(K.VIS).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)); }
+  function getVisitorPassById(id) { return coll(K.VIS).find(x=>x.id===id)||null; }
+  function approveVisitorPass(id, note) { const list=coll(K.VIS),i=list.findIndex(x=>x.id===id); if(i===-1)return null; list[i].status='approved'; list[i].responseNote=note||'审核通过'; list[i].updatedAt=now(); addH(list[i].responseHistory,'审核通过',note||'审核通过'); save(K.VIS,list); return list[i]; }
+  function rejectVisitorPass(id, note) { const list=coll(K.VIS),i=list.findIndex(x=>x.id===id); if(i===-1)return null; list[i].status='rejected'; list[i].responseNote=note||'审核未通过'; list[i].updatedAt=now(); addH(list[i].responseHistory,'审核拒绝',note||'审核未通过'); save(K.VIS,list); return list[i]; }
+  function getVisitorPassStats() { const list=coll(K.VIS); return{ total:list.length, pending:list.filter(v=>v.status==='pending').length, approved:list.filter(v=>v.status==='approved').length, rejected:list.filter(v=>v.status==='rejected').length }; }
 
-  // -- Parking --
   function getParkingSpots() { return coll(K.PARK); }
-  function getParkingStats() {
-    const list = coll(K.PARK);
-    return { total: list.length, available: list.filter(p => p.status === 'available').length, occupied: list.filter(p => p.status === 'occupied').length, reserved: list.filter(p => p.status === 'reserved').length, maintenance: list.filter(p => p.status === 'maintenance').length };
-  }
+  function getParkingStats() { const list=coll(K.PARK); return{ total:list.length, available:list.filter(p=>p.status==='available').length, occupied:list.filter(p=>p.status==='occupied').length, reserved:list.filter(p=>p.status==='reserved').length, maintenance:list.filter(p=>p.status==='maintenance').length }; }
 
-  // -- Repairs --
-  function getRepairRequests() { return coll(K.REP).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); }
-  function getRepairRequestById(id) { return coll(K.REP).find(x => x.id === id) || null; }
-  function updateRepair(id, { status, response } = {}) {
-    const list = coll(K.REP), i = list.findIndex(x => x.id === id);
-    if (i === -1) return null;
-    if (response) { list[i].response = response; list[i].status = 'resolved'; addHistory(list[i].responseHistory, '回复并完成', response); }
-    else if (status) { list[i].status = status; const stMap = { pending: '标记为待处理', processing: '标记为处理中', resolved: '标记为已完成' }; addHistory(list[i].responseHistory, stMap[status] || '状态更新', ''); }
-    list[i].updatedAt = now(); save(K.REP, list); return list[i];
-  }
-  function getRepairStats() {
-    const list = coll(K.REP);
-    return { total: list.length, pending: list.filter(r => r.status === 'pending').length, processing: list.filter(r => r.status === 'processing').length, resolved: list.filter(r => r.status === 'resolved').length };
-  }
+  function getRepairRequests() { return coll(K.REP).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)); }
+  function getRepairRequestById(id) { return coll(K.REP).find(x=>x.id===id)||null; }
+  function updateRepair(id, { status, response }={}) { const list=coll(K.REP),i=list.findIndex(x=>x.id===id); if(i===-1)return null; if(response){ list[i].response=response; list[i].status='resolved'; addH(list[i].responseHistory,'回复并完成',response); } else if(status){ list[i].status=status; const stMap={ pending:'标记为待处理', processing:'标记为处理中', resolved:'标记为已完成' }; addH(list[i].responseHistory,stMap[status]||'状态更新',''); } list[i].updatedAt=now(); save(K.REP,list); return list[i]; }
+  function getRepairStats() { const list=coll(K.REP); return{ total:list.length, pending:list.filter(r=>r.status==='pending').length, processing:list.filter(r=>r.status==='processing').length, resolved:list.filter(r=>r.status==='resolved').length }; }
 
-  // -- Payments --
-  function getPaymentRecords() { return coll(K.PAY).sort((a, b) => new Date(b.payTime || b.id) - new Date(a.payTime || a.id)); }
-  function getPaymentStats() {
-    const list = coll(K.PAY), d = new Date(), m = d.getMonth(), y = d.getFullYear();
-    const monthP = list.filter(p => { if (!p.payTime) return false; const pd = new Date(p.payTime); return pd.getMonth() === m && pd.getFullYear() === y; });
-    return { total: list.length, totalAmount: list.filter(p => p.status === 'paid').reduce((s, p) => s + p.amount, 0), monthAmount: monthP.filter(p => p.status === 'paid').reduce((s, p) => s + p.amount, 0), pending: list.filter(p => p.status === 'pending').length, overdue: list.filter(p => p.status === 'overdue').length };
-  }
+  function getPaymentRecords() { return coll(K.PAY).sort((a,b)=>new Date(b.payTime||b.id)-new Date(a.payTime||a.id)); }
+  function getPaymentStats() { const list=coll(K.PAY); const d=new Date(),m=d.getMonth(),y=d.getFullYear(); const mp=list.filter(p=>{ if(!p.payTime)return false; const pd=new Date(p.payTime); return pd.getMonth()===m&&pd.getFullYear()===y; }); return{ total:list.length, totalAmount:list.filter(p=>p.status==='paid').reduce((s,p)=>s+p.amount,0), monthAmount:mp.filter(p=>p.status==='paid').reduce((s,p)=>s+p.amount,0), pending:list.filter(p=>p.status==='pending').length, overdue:list.filter(p=>p.status==='overdue').length }; }
 
   seed();
-
-  return { login, logout, getCurrentUser, isLoggedIn, getAnnouncements, getAnnouncementById, createAnnouncement, updateAnnouncement, deleteAnnouncement, getAnnouncementStats, getComplaints, getComplaintById, updateComplaint, getComplaintStats, getUsers, getUserById, getVisitorPasses, getVisitorPassById, approveVisitorPass, rejectVisitorPass, getVisitorPassStats, getParkingSpots, getParkingStats, getRepairRequests, getRepairRequestById, updateRepair, getRepairStats, getPaymentRecords, getPaymentStats, gid };
+  return { login, logout, getCurrentUser, isLoggedIn, getAnnouncements, getAnnouncementById, createAnnouncement, updateAnnouncement, deleteAnnouncement, getAnnouncementStats, getComplaints, getComplaintById, updateComplaint, getComplaintStats, getUsers, getVisitorPasses, getVisitorPassById, approveVisitorPass, rejectVisitorPass, getVisitorPassStats, getParkingSpots, getParkingStats, getRepairRequests, getRepairRequestById, updateRepair, getRepairStats, getPaymentRecords, getPaymentStats, gid };
 })();
 
-/* ===================================================================
-   智慧社区管理端 v2.0 — App Controller
-   =================================================================== */
 const App = (() => {
-  'use strict';
+  const $ = (s,c) => (c||document).querySelector(s);
+  const $$ = (s,c) => [...(c||document).querySelectorAll(s)];
+  const fmtDT = iso => { if(!iso)return'-'; const d=new Date(iso); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; };
+  const fmtDate = iso => { if(!iso)return'-'; const d=new Date(iso); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
+  const fmtRel = iso => { if(!iso)return'-'; const diff=Date.now()-new Date(iso).getTime(); const m=Math.floor(diff/60000),h=Math.floor(diff/3600000),d=Math.floor(diff/86400000); if(m<1)return'刚刚'; if(m<60)return`${m}分钟前`; if(h<24)return`${h}小时前`; if(d<7)return`${d}天前`; return fmtDate(iso); };
+  const trunc = (t,n) => t&&t.length>n ? t.substring(0,n)+'...' : (t||'');
+  const esc = s => { const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; };
+  const badge = (l,t) => `<span class="badge badge-${t}">${l}</span>`;
 
-  // -- Helpers --
-  const $ = (s, c) => (c || document).querySelector(s);
-  const $$ = (s, c) => [...(c || document).querySelectorAll(s)];
+  function toast(msg, type='success') { const icons={ success:'✅', error:'❌', warning:'⚠️', info:'ℹ️' }; const el=document.createElement('div'); el.className=`toast ${type==='success'?'s':type==='error'?'e':type==='warning'?'w':''}`; el.innerHTML=`<span>${icons[type]||'ℹ️'}</span><span class="toast-msg">${esc(msg)}</span><button class="toast-close">✕</button>`; el.querySelector('.toast-close').onclick=()=>el.remove(); $('#toastContainer').appendChild(el); setTimeout(()=>{ el.style.opacity='0';el.style.transform='translateX(50%)';el.style.transition='.3s ease';setTimeout(()=>el.remove(),300); },3500); }
+  function openModal(m) { m.style.display='flex'; document.body.style.overflow='hidden'; }
+  function closeModal(m) { m.style.display='none'; document.body.style.overflow=''; }
 
-  const fmtDT = iso => {
-    if (!iso) return '-';
-    const d = new Date(iso);
-    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-  };
-  const fmtDate = iso => { if (!iso) return '-'; const d = new Date(iso); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
-  const fmtRel = iso => {
-    if (!iso) return '-';
-    const diff = Date.now() - new Date(iso).getTime();
-    const mins = Math.floor(diff / 60000), hrs = Math.floor(diff / 3600000), days = Math.floor(diff / 86400000);
-    if (mins < 1) return '刚刚'; if (mins < 60) return `${mins}分钟前`; if (hrs < 24) return `${hrs}小时前`; if (days < 7) return `${days}天前`;
-    return fmtDate(iso);
-  };
-  const trunc = (t, n) => t && t.length > n ? t.substring(0, n) + '...' : (t || '');
-  const esc = s => { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; };
-  const badge = (label, type) => `<span class="badge badge-${type}">${label}</span>`;
+  function paginate(container, page, total, cb) { if(total<=1){ container.innerHTML='';return; } let h=`<button ${page===1?'disabled':''} data-p="${page-1}">◀</button>`; const s=Math.max(1,page-2),e=Math.min(total,page+2); if(s>1){ h+=`<button data-p="1">1</button>`; if(s>2)h+='<button disabled>...</button>'; } for(let i=s;i<=e;i++)h+=`<button class="${i===page?'active':''}" data-p="${i}">${i}</button>`; if(e<total){ if(e<total-1)h+='<button disabled>...</button>'; h+=`<button data-p="${total}">${total}</button>`; } h+=`<button ${page===total?'disabled':''} data-p="${page+1}">▶</button>`; container.innerHTML=h; container.querySelectorAll('button:not([disabled])').forEach(b=>b.onclick=()=>{ const p=+b.dataset.p; if(p&&p!==page)cb(p); }); }
 
-  // -- Toast --
-  function toast(msg, type = 'success') {
-    const icons = { success: '✅', error: '❌', warning: '⚠️', info: 'ℹ️' };
-    const el = document.createElement('div');
-    el.className = `toast ${type}`;
-    el.innerHTML = `<span>${icons[type]||'ℹ️'}</span><span class="toast-msg">${esc(msg)}</span><button class="toast-close">✕</button>`;
-    el.querySelector('.toast-close').onclick = () => el.remove();
-    $('#toastContainer').appendChild(el);
-    setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateX(50%)'; el.style.transition = '.3s ease'; setTimeout(() => el.remove(), 300); }, 3500);
-  }
+  function createTableManager(cfg) { let page=1; return { load(){ const all=cfg.getData(); const search=cfg.searchId?($('#'+cfg.searchId).value||'').toLowerCase().trim():''; const fVals=(cfg.filterIds||[]).map(id=>$('#'+id).value); const filtered=all.filter(item=>cfg.filterFn(item,search,fVals)); const total=Math.ceil(filtered.length/cfg.perPage)||1; if(page>total)page=total; const start=(page-1)*cfg.perPage; const items=filtered.slice(start,start+cfg.perPage); const tbody=$('#'+cfg.tableBodyId); if(items.length===0){ tbody.innerHTML=`<tr><td colspan="${cfg.emptyCols}" class="empty-state">${cfg.emptyMsg||'暂无数据'}</td></tr>`; } else { tbody.innerHTML=items.map((item,i)=>cfg.renderRow(item,i,start)).join(''); } paginate($('#'+cfg.paginationId),page,total,p=>{ page=p;this.load(); }); }, reset(){ page=1;this.load(); } }; }
 
-  // -- Modal --
-  function openModal(m) { m.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-  function closeModal(m) { m.style.display = 'none'; document.body.style.overflow = ''; }
+  const pageTitles = { dashboard:'工作台', announcement:'公告发布', complaint:'投诉管理', visitor:'访客通行', parking:'车位管理', repair:'报事处理', payment:'缴费记录' };
 
-  // -- Pagination --
-  function paginate(container, page, total, cb) {
-    if (total <= 1) { container.innerHTML = ''; return; }
-    let h = `<button ${page===1?'disabled':''} data-p="${page-1}">◀</button>`;
-    const s = Math.max(1, page - 2), e = Math.min(total, page + 2);
-    if (s > 1) { h += `<button data-p="1">1</button>`; if (s > 2) h += '<button disabled>...</button>'; }
-    for (let i = s; i <= e; i++) h += `<button class="${i===page?'active':''}" data-p="${i}">${i}</button>`;
-    if (e < total) { if (e < total - 1) h += '<button disabled>...</button>'; h += `<button data-p="${total}">${total}</button>`; }
-    h += `<button ${page===total?'disabled':''} data-p="${page+1}">▶</button>`;
-    container.innerHTML = h;
-    container.querySelectorAll('button:not([disabled])').forEach(b => b.onclick = () => { const p = +b.dataset.p; if (p && p !== page) cb(p); });
-  }
+  function navigateTo(name) { $$('.sidebar-nav a').forEach(a=>a.classList.toggle('active',a.dataset.page===name)); $$('.page').forEach(p=>p.classList.remove('active')); const t=document.getElementById('page-'+name); if(t)t.classList.add('active'); $('#currentPageTitle').textContent=pageTitles[name]||name; loaders[name]?.(); }
 
-  // -- Table Manager Factory --
-  function createTableManager(cfg) {
-    let page = 1;
-    return {
-      load() {
-        const all = cfg.getData();
-        const search = cfg.searchId ? ($('#' + cfg.searchId).value || '').toLowerCase().trim() : '';
-        const filterVals = (cfg.filterIds || []).map(id => $('#' + id).value);
-        const filtered = all.filter(item => cfg.filterFn(item, search, filterVals));
-        const total = Math.ceil(filtered.length / cfg.perPage) || 1;
-        if (page > total) page = total;
-        const start = (page - 1) * cfg.perPage;
-        const items = filtered.slice(start, start + cfg.perPage);
-        const tbody = $('#' + cfg.tableBodyId);
-        if (items.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="${cfg.emptyCols}" class="empty-state">${cfg.emptyMsg || '暂无数据'}</td></tr>`;
-        } else {
-          tbody.innerHTML = items.map((item, i) => cfg.renderRow(item, i, start)).join('');
-        }
-        paginate($('#' + cfg.paginationId), page, total, p => { page = p; this.load(); });
-        if (cfg.afterRender) cfg.afterRender();
-      },
-      reset() { page = 1; this.load(); },
-      getPage() { return page; }
-    };
-  }
+  function loadDashboard() { const aS=DB.getAnnouncementStats(),cS=DB.getComplaintStats(),vS=DB.getVisitorPassStats(),pS=DB.getParkingStats(),rS=DB.getRepairStats(),payS=DB.getPaymentStats(); $('#statAnnouncements').textContent=aS.total; $('#statComplaints').textContent=cS.total; $('#statPending').textContent=cS.pending; $('#statTotalViews').textContent=aS.totalViews; $('#statVisitorPending').textContent=vS.pending; $('#statParkingUsed').textContent=pS.occupied; $('#statRepairPending').textContent=rS.pending; $('#statPaymentMonth').textContent='¥'+payS.monthAmount.toLocaleString(); const anns=DB.getAnnouncements().slice(0,5); const ae=$('#recentAnnouncements'); if(!anns.length){ ae.innerHTML='<div class="empty-state">暂无公告</div>'; } else { const pl={ normal:'普通', high:'重要', urgent:'紧急' }; ae.innerHTML=anns.map(a=>`<div class="recent-item"><div class="recent-main"><div class="recent-title">${esc(a.title)}</div><div class="recent-meta">${badge(pl[a.priority]||a.priority, a.priority==='urgent'?'d':(a.priority==='high'?'w':'s'))} ${fmtRel(a.createdAt)} · ${a.views}次浏览</div></div><button class="btn btn-xs btn-o" data-action="view-announcement" data-id="${a.id}">查看</button></div>`).join(''); } const pC=DB.getComplaints().filter(c=>c.status==='pending').slice(0,5); const ce=$('#recentComplaints'); if(!pC.length){ ce.innerHTML='<div class="empty-state">暂无待处理投诉</div>'; } else { ce.innerHTML=pC.map(c=>`<div class="recent-item"><div class="recent-main"><div class="recent-title">${esc(trunc(c.content,40))}</div><div class="recent-meta">${c.userName} · ${c.building} · ${fmtRel(c.createdAt)}</div></div><button class="btn btn-xs btn-p" data-action="process-complaint" data-id="${c.id}">处理</button></div>`).join(''); } }
 
-  // -- Page Registry --
-  const pageTitles = { dashboard: '工作台', announcement: '公告发布', complaint: '投诉管理', visitor: '访客通行', parking: '车位管理', repair: '报事处理', payment: '缴费记录' };
+  const annMgr = createTableManager({ getData:()=>DB.getAnnouncements(), filterFn:(a,s,[cat])=>(!s||a.title.toLowerCase().includes(s))&&(!cat||a.category===cat), renderRow:(a,i,start)=>{ const cb=a.category==='紧急'?'d':(a.category==='维护'?'w':'i'); return `<tr><td>${start+i+1}</td><td><strong>${esc(a.title)}</strong></td><td>${badge(a.category,cb)}</td><td>${fmtDT(a.createdAt)}</td><td>${a.views}</td><td>${badge('已发布','s')}</td><td><div class="btn-group"><button class="btn btn-xs btn-o" data-action="view-announcement" data-id="${a.id}">详情</button><button class="btn btn-xs btn-o" data-action="edit-announcement" data-id="${a.id}">编辑</button><button class="btn btn-xs btn-d" data-action="delete-announcement" data-id="${a.id}">删除</button></div></td></tr>`; }, tableBodyId:'announcementTableBody', paginationId:'announcementPagination', perPage:8, emptyCols:7, searchId:'announcementSearch', filterIds:['announcementCategory'] });
 
-  function navigateTo(name) {
-    $$('.sidebar-nav a').forEach(a => a.classList.toggle('active', a.dataset.page === name));
-    $$('.page').forEach(p => p.classList.remove('active'));
-    const target = document.getElementById('page-' + name);
-    if (target) target.classList.add('active');
-    $('#currentPageTitle').textContent = pageTitles[name] || name;
-    loaders[name]?.();
-  }
+  function openNewAnnouncement() { $('#announcementModalTitle').textContent='发布新公告'; $('#announcementForm').reset(); $('#announcementId').value=''; $('#announcementPriority').value='normal'; openModal($('#announcementModal')); }
+  function openEditAnnouncement(id) { const a=DB.getAnnouncementById(id); if(!a)return toast('公告不存在','error'); $('#announcementModalTitle').textContent='编辑公告'; $('#announcementId').value=a.id; $('#announcementTitle').value=a.title; $('#announcementCategorySelect').value=a.category; $('#announcementPriority').value=a.priority; $('#announcementContent').value=a.content; openModal($('#announcementModal')); }
+  function saveAnnouncement(e) { e.preventDefault(); const id=$('#announcementId').value; const data={ title:$('#announcementTitle').value.trim(), category:$('#announcementCategorySelect').value, priority:$('#announcementPriority').value, content:$('#announcementContent').value.trim() }; if(!data.title||!data.category||!data.content)return toast('请填写所有必填项','warning'); if(id){ DB.updateAnnouncement(id,data); toast('公告更新成功！','success'); } else { DB.createAnnouncement(data); toast('公告发布成功！','success'); } closeModal($('#announcementModal')); annMgr.reset(); if($('#page-dashboard').classList.contains('active'))loadDashboard(); }
+  async function deleteAnnouncement(id) { if(!confirm('确定要删除该公告吗？'))return; DB.deleteAnnouncement(id); toast('公告已删除','success'); annMgr.reset(); if($('#page-dashboard').classList.contains('active'))loadDashboard(); }
+  function showAnnouncementDetail(id) { const a=DB.getAnnouncementById(id); if(!a)return toast('公告不存在','error'); const users=DB.getUsers(); const viewed=users.filter(u=>a.viewedBy.includes(u.id)); const nv=users.filter(u=>!a.viewedBy.includes(u.id)); const pl={ normal:'普通', high:'重要', urgent:'紧急' }; $('#announcementDetailContent').innerHTML=`<h3 style="margin-bottom:14px">${esc(a.title)}</h3><div class="meta-row"><span>📂 类别：${badge(a.category,a.category==='紧急'?'d':'i')}</span><span>⚡ 优先级：${badge(pl[a.priority],a.priority==='urgent'?'d':(a.priority==='high'?'w':'s'))}</span><span>🕐 ${fmtDT(a.createdAt)}</span><span>👁️ ${a.views}次浏览</span></div><div class="detail-content">${esc(a.content)}</div><div class="view-status"><h4>📊 浏览状态（已读 ${a.views}/${users.length}）</h4><div style="margin-bottom:10px">${viewed.length?viewed.map(u=>badge(u.name+'（'+u.building+u.room+'）','s')).join(' '):'<span style="color:var(--t3);font-size:13px">暂无</span>'}</div><div>${nv.length?nv.map(u=>badge(u.name+'（'+u.building+u.room+'）','w')).join(' '):'<span style="color:var(--t3);font-size:13px">全部已读</span>'}</div></div>`; openModal($('#announcementDetailModal')); }
 
-  // -- Dashboard --
-  function loadDashboard() {
-    const aStats = DB.getAnnouncementStats(), cStats = DB.getComplaintStats();
-    const vStats = DB.getVisitorPassStats(), pStats = DB.getParkingStats();
-    const rStats = DB.getRepairStats(), payStats = DB.getPaymentStats();
+  const cmpMgr = createTableManager({ getData:()=>DB.getComplaints(), filterFn:(c,s,[st])=>(!s||c.content.toLowerCase().includes(s)||c.userName.toLowerCase().includes(s))&&(!st||c.status===st), renderRow:(c,i,start)=>{ const sm={ pending:['w','待处理'], processing:['i','处理中'], resolved:['s','已解决'] }; const[bt,bl]=sm[c.status]||['n',c.status]; return `<tr><td>${start+i+1}</td><td><strong>${esc(c.userName)}</strong><br><small style="color:var(--t3)">${esc(c.building)}</small></td><td>${esc(trunc(c.content,36))}</td><td>${esc(c.userPhone)}</td><td>${fmtDT(c.createdAt)}</td><td>${badge(bl,bt)}</td><td><button class="btn btn-xs btn-p" data-action="process-complaint" data-id="${c.id}">处理</button></td></tr>`; }, tableBodyId:'complaintTableBody', paginationId:'complaintPagination', perPage:8, emptyCols:7, searchId:'complaintSearch', filterIds:['complaintStatus'] });
 
-    $('#statAnnouncements').textContent = aStats.total;
-    $('#statComplaints').textContent = cStats.total;
-    $('#statPending').textContent = cStats.pending;
-    $('#statTotalViews').textContent = aStats.totalViews;
-    $('#statVisitorPending').textContent = vStats.pending;
-    $('#statParkingUsed').textContent = pStats.occupied;
-    $('#statRepairPending').textContent = rStats.pending;
-    $('#statPaymentMonth').textContent = '¥' + payStats.monthAmount.toLocaleString();
+  function showComplaintDetail(id) { const c=DB.getComplaintById(id); if(!c)return toast('投诉不存在','error'); const sm={ pending:['w','待处理'], processing:['i','处理中'], resolved:['s','已解决'] }; const[bt,bl]=sm[c.status]||['n',c.status]; let so=''; if(c.status==='pending')so='<option value="pending" selected>待处理</option><option value="processing">处理中</option><option value="resolved">已解决</option>'; else if(c.status==='processing')so='<option value="processing" selected>处理中</option><option value="resolved">已解决</option>'; else so='<option value="resolved" selected>已解决</option>'; let hh=''; if(c.responseHistory&&c.responseHistory.length){ hh='<div class="detail-block"><h4>📜 处理记录</h4>'+[...c.responseHistory].reverse().map(h=>`<div class="history-item"><span class="h-action">${esc(h.action)}</span> <span class="h-time">${fmtDT(h.time)} · ${esc(h.operator)}</span>${h.note?`<div style="margin-top:3px;color:var(--t2)">${esc(h.note)}</div>`:''}</div>`).join('')+'</div>'; } $('#complaintDetailContent').innerHTML=`<div class="detail-block"><h4>📝 投诉信息</h4><div class="detail-row"><span class="lbl">投诉人：</span><span class="val">${esc(c.userName)}</span></div><div class="detail-row"><span class="lbl">住址：</span><span class="val">${esc(c.building)}</span></div><div class="detail-row"><span class="lbl">电话：</span><span class="val">${esc(c.userPhone)}</span></div><div class="detail-row"><span class="lbl">类别：</span><span class="val">${esc(c.category||'未分类')}</span></div><div class="detail-row"><span class="lbl">时间：</span><span class="val">${fmtDT(c.createdAt)}</span></div><h4 style="margin-top:12px">投诉内容：</h4><div class="detail-content">${esc(c.content)}</div></div><div class="detail-block"><h4>⚙️ 处理操作</h4><div class="field"><label>处理状态</label><select id="complaintStatusSelect" class="form-input">${so}</select></div><div class="field"><label>回复内容</label><textarea id="complaintResponse" class="form-input" rows="3" placeholder="输入给用户的回复内容...">${esc(c.response||'')}</textarea></div><div class="form-actions"><button class="btn btn-o" id="btnCancelComplaint">取消</button><button class="btn btn-p" id="btnSaveComplaint">保存处理</button></div></div>${hh}`; openModal($('#complaintModal')); $('#btnCancelComplaint').onclick=()=>closeModal($('#complaintModal')); $('#btnSaveComplaint').onclick=()=>{ const st=$('#complaintStatusSelect').value; const resp=$('#complaintResponse').value.trim(); if(st==='resolved'&&resp){ DB.updateComplaint(id,{status:st,response:resp}); toast('投诉已处理并回复','success'); } else if(st!==c.status){ DB.updateComplaint(id,{status:st}); if(resp)DB.updateComplaint(id,{response:resp}); toast('投诉状态已更新','success'); } else if(resp){ DB.updateComplaint(id,{response:resp}); toast('投诉已回复','success'); } closeModal($('#complaintModal')); cmpMgr.reset(); if($('#page-dashboard').classList.contains('active'))loadDashboard(); }; }
 
-    const anns = DB.getAnnouncements().slice(0, 5);
-    const annEl = $('#recentAnnouncements');
-    if (!anns.length) { annEl.innerHTML = '<div class="empty-state">暂无公告</div>'; }
-    else {
-      const priLabels = { normal: '普通', high: '重要', urgent: '紧急' };
-      annEl.innerHTML = anns.map(a => `<div class="recent-item"><div class="recent-main"><div class="recent-title">${esc(a.title)}</div><div class="recent-meta">${badge(priLabels[a.priority]||a.priority, a.priority==='urgent'?'danger':(a.priority==='high'?'warning':'success'))} ${fmtRel(a.createdAt)} · ${a.views}次浏览</div></div><button class="btn btn-xs btn-outline" data-action="view-announcement" data-id="${a.id}">查看</button></div>`).join('');
-    }
+  const visMgr = createTableManager({ getData:()=>DB.getVisitorPasses(), filterFn:(v,s,[st])=>(!s||v.applicantName.toLowerCase().includes(s)||v.visitorName.toLowerCase().includes(s))&&(!st||v.status===st), renderRow:(v,i,start)=>{ const sm={ pending:['w','待审核'], approved:['s','已通过'], rejected:['d','已拒绝'] }; const[bt,bl]=sm[v.status]||['n',v.status]; return `<tr><td>${start+i+1}</td><td><strong>${esc(v.applicantName)}</strong><br><small style="color:var(--t3)">${esc(v.applicantBuilding)}</small></td><td>${esc(v.visitorName)}</td><td>${esc(v.visitDate)}</td><td>${v.plateNumber?esc(v.plateNumber):'<span style="color:var(--t3)">无</span>'}</td><td>${fmtDT(v.createdAt)}</td><td>${badge(bl,bt)}</td><td><button class="btn btn-xs btn-p" data-action="review-visitor" data-id="${v.id}">审核</button></td></tr>`; }, tableBodyId:'visitorTableBody', paginationId:'visitorPagination', perPage:8, emptyCols:8, searchId:'visitorSearch', filterIds:['visitorStatus'] });
 
-    const pendingC = DB.getComplaints().filter(c => c.status === 'pending').slice(0, 5);
-    const cmpEl = $('#recentComplaints');
-    if (!pendingC.length) { cmpEl.innerHTML = '<div class="empty-state">暂无待处理投诉</div>'; }
-    else {
-      cmpEl.innerHTML = pendingC.map(c => `<div class="recent-item"><div class="recent-main"><div class="recent-title">${esc(trunc(c.content, 40))}</div><div class="recent-meta">${c.userName} · ${c.building} · ${fmtRel(c.createdAt)}</div></div><button class="btn btn-xs btn-primary" data-action="process-complaint" data-id="${c.id}">处理</button></div>`).join('');
-    }
-  }
+  function showVisitorDetail(id) { const v=DB.getVisitorPassById(id); if(!v)return toast('访客通行申请不存在','error'); const sm={ pending:['w','待审核'], approved:['s','已通过'], rejected:['d','已拒绝'] }; const[bt,bl]=sm[v.status]||['n',v.status]; let hh=''; if(v.responseHistory&&v.responseHistory.length){ hh='<div class="detail-block"><h4>📜 审核记录</h4>'+[...v.responseHistory].reverse().map(h=>`<div class="history-item"><span class="h-action">${esc(h.action)}</span> <span class="h-time">${fmtDT(h.time)} · ${esc(h.operator)}</span>${h.note?`<div style="margin-top:3px;color:var(--t2)">${esc(h.note)}</div>`:''}</div>`).join('')+'</div>'; } $('#visitorDetailContent').innerHTML=`<div class="detail-block"><h4>🛂 访客通行申请</h4><div class="detail-row"><span class="lbl">状态：</span><span class="val">${badge(bl,bt)}</span></div><div class="detail-row"><span class="lbl">申请人：</span><span class="val">${esc(v.applicantName)}（${esc(v.applicantBuilding)}）</span></div><div class="detail-row"><span class="lbl">电话：</span><span class="val">${esc(v.applicantPhone)}</span></div><div class="detail-row"><span class="lbl">访客：</span><span class="val">${esc(v.visitorName)}（${esc(v.visitorPhone)}）</span></div><div class="detail-row"><span class="lbl">人数：</span><span class="val">${v.visitorCount}人</span></div><div class="detail-row"><span class="lbl">日期：</span><span class="val">${esc(v.visitDate)}</span></div><div class="detail-row"><span class="lbl">车牌：</span><span class="val">${v.plateNumber||'无'}</span></div><h4 style="margin-top:12px">来访事由：</h4><div class="detail-content">${esc(v.visitReason)}</div></div>${v.status==='pending'?`<div class="detail-block"><h4>⚙️ 审核操作</h4><div class="field"><label>审核意见</label><textarea id="visitorReviewNote" class="form-input" rows="3" placeholder="输入审核意见..."></textarea></div><div class="form-actions"><button class="btn btn-o" id="btnCancelVisitor">取消</button><button class="btn btn-d" id="btnRejectVisitor">拒绝</button><button class="btn btn-s" id="btnApproveVisitor">通过</button></div></div>`:`<div class="detail-block"><h4>📋 审核结果</h4><div class="detail-content">${esc(v.responseNote||'无')}</div></div>`}${hh}`; openModal($('#visitorModal')); $('#btnCancelVisitor')&&($('#btnCancelVisitor').onclick=()=>closeModal($('#visitorModal'))); $('#btnApproveVisitor')&&($('#btnApproveVisitor').onclick=()=>{ const note=$('#visitorReviewNote').value.trim()||'审核通过，欢迎来访。'; DB.approveVisitorPass(id,note); toast('访客通行已审核通过','success'); closeModal($('#visitorModal')); visMgr.reset(); if($('#page-dashboard').classList.contains('active'))loadDashboard(); }); $('#btnRejectVisitor')&&($('#btnRejectVisitor').onclick=()=>{ const note=$('#visitorReviewNote').value.trim()||'审核未通过。'; DB.rejectVisitorPass(id,note); toast('访客通行已拒绝','warning'); closeModal($('#visitorModal')); visMgr.reset(); if($('#page-dashboard').classList.contains('active'))loadDashboard(); }); }
 
-  // -- Announcement Managers --
-  const annMgr = createTableManager({
-    getData: () => DB.getAnnouncements(),
-    filterFn: (a, search, [cat]) => (!search || a.title.toLowerCase().includes(search)) && (!cat || a.category === cat),
-    renderRow: (a, i, start) => {
-      const catBadge = a.category === '紧急' ? 'danger' : (a.category === '维护' ? 'warning' : 'info');
-      return `<tr><td>${start+i+1}</td><td><strong>${esc(a.title)}</strong></td><td>${badge(a.category, catBadge)}</td><td>${fmtDT(a.createdAt)}</td><td>${a.views}</td><td>${badge('已发布','success')}</td><td><div class="btn-group"><button class="btn btn-xs btn-outline" data-action="view-announcement" data-id="${a.id}">详情</button><button class="btn btn-xs btn-outline" data-action="edit-announcement" data-id="${a.id}">编辑</button><button class="btn btn-xs btn-danger" data-action="delete-announcement" data-id="${a.id}">删除</button></div></td></tr>`;
-    },
-    tableBodyId: 'announcementTableBody', paginationId: 'announcementPagination', perPage: 8, emptyCols: 7,
-    searchId: 'announcementSearch', filterIds: ['announcementCategory']
-  });
+  const parkMgr = createTableManager({ getData:()=>{ const s=DB.getParkingStats(); $('#parkingTotal').textContent=s.total; $('#parkingAvailable').textContent=s.available; $('#parkingOccupied').textContent=s.occupied; $('#parkingMaintenance').textContent=s.maintenance; return DB.getParkingSpots(); }, filterFn:(p,s,[st,tp])=>(!s||p.spotNumber.toLowerCase().includes(s)||p.area.toLowerCase().includes(s)||(p.ownerName||'').toLowerCase().includes(s))&&(!st||p.status===st)&&(!tp||p.type===tp), renderRow:(p,i,start)=>{ const sm={ available:['s','空闲'], occupied:['i','已占用'], reserved:['w','已预留'], maintenance:['d','维护中'] }; const[bt,bl]=sm[p.status]||['n',p.status]; const tm={ standard:'标准车位', electric:'新能源充电', disabled:'无障碍车位' }; return `<tr><td>${start+i+1}</td><td><strong>${esc(p.spotNumber)}</strong></td><td>${esc(p.area)}</td><td>${tm[p.type]||p.type}</td><td>${badge(bl,bt)}</td><td>${p.ownerName||'<span style="color:var(--t3)">-</span>'}</td><td>${p.plateNumber||'<span style="color:var(--t3)">-</span>'}</td><td>${p.rentExpiry||'<span style="color:var(--t3)">-</span>'}</td></tr>`; }, tableBodyId:'parkingTableBody', paginationId:'parkingPagination', perPage:10, emptyCols:8, searchId:'parkingSearch', filterIds:['parkingStatusFilter','parkingTypeFilter'] });
 
-  function openNewAnnouncement() {
-    $('#announcementModalTitle').textContent = '发布新公告';
-    $('#announcementForm').reset(); $('#announcementId').value = ''; $('#announcementPriority').value = 'normal';
-    openModal($('#announcementModal'));
-  }
-  function openEditAnnouncement(id) {
-    const a = DB.getAnnouncementById(id);
-    if (!a) return toast('公告不存在', 'error');
-    $('#announcementModalTitle').textContent = '编辑公告';
-    $('#announcementId').value = a.id;
-    $('#announcementTitle').value = a.title;
-    $('#announcementCategorySelect').value = a.category;
-    $('#announcementPriority').value = a.priority;
-    $('#announcementContent').value = a.content;
-    openModal($('#announcementModal'));
-  }
-  function saveAnnouncement(e) {
-    e.preventDefault();
-    const id = $('#announcementId').value;
-    const data = { title: $('#announcementTitle').value.trim(), category: $('#announcementCategorySelect').value, priority: $('#announcementPriority').value, content: $('#announcementContent').value.trim() };
-    if (!data.title || !data.category || !data.content) return toast('请填写所有必填项', 'warning');
-    if (id) { DB.updateAnnouncement(id, data); toast('公告更新成功！', 'success'); }
-    else { DB.createAnnouncement(data); toast('公告发布成功！', 'success'); }
-    closeModal($('#announcementModal')); annMgr.reset();
-    if ($('#page-dashboard').classList.contains('active')) loadDashboard();
-  }
-  async function deleteAnnouncement(id) {
-    if (!confirm('确定要删除该公告吗？此操作不可撤销。')) return;
-    DB.deleteAnnouncement(id); toast('公告已删除', 'success'); annMgr.reset();
-    if ($('#page-dashboard').classList.contains('active')) loadDashboard();
-  }
-  function showAnnouncementDetail(id) {
-    const a = DB.getAnnouncementById(id);
-    if (!a) return toast('公告不存在', 'error');
-    const users = DB.getUsers();
-    const viewed = users.filter(u => a.viewedBy.includes(u.id));
-    const notViewed = users.filter(u => !a.viewedBy.includes(u.id));
-    const priLabels = { normal: '普通', high: '重要', urgent: '紧急' };
-    $('#announcementDetailContent').innerHTML = `
-      <h3 style="margin-bottom:14px">${esc(a.title)}</h3>
-      <div class="meta-row">
-        <span>📂 类别：${badge(a.category, a.category==='紧急'?'danger':'info')}</span>
-        <span>⚡ 优先级：${badge(priLabels[a.priority], a.priority==='urgent'?'danger':(a.priority==='high'?'warning':'success'))}</span>
-        <span>🕐 ${fmtDT(a.createdAt)}</span>
-        <span>👁️ ${a.views}次浏览</span>
-      </div>
-      <div class="detail-content">${esc(a.content)}</div>
-      <div class="view-status">
-        <h4>📊 浏览状态（已读 ${a.views}/${users.length}）</h4>
-        <div style="margin-bottom:10px"><span style="font-size:13px;color:var(--text2)">✅ 已阅读：</span>${viewed.length ? viewed.map(u => badge(u.name+'（'+u.building+u.room+'）','success')).join(' ') : '<span style="color:var(--text3);font-size:13px">暂无</span>'}</div>
-        <div><span style="font-size:13px;color:var(--text2)">⏳ 未阅读：</span>${notViewed.length ? notViewed.map(u => badge(u.name+'（'+u.building+u.room+'）','warning')).join(' ') : '<span style="color:var(--text3);font-size:13px">全部已读</span>'}</div>
-      </div>`;
-    openModal($('#announcementDetailModal'));
-  }
+  const repMgr = createTableManager({ getData:()=>DB.getRepairRequests(), filterFn:(r,s,[st,tp])=>(!s||r.applicantName.toLowerCase().includes(s)||r.content.toLowerCase().includes(s))&&(!st||r.status===st)&&(!tp||r.repairType===tp), renderRow:(r,i,start)=>{ const sm={ pending:['w','待处理'], processing:['i','处理中'], resolved:['s','已完成'] }; const[bt,bl]=sm[r.status]||['n',r.status]; return `<tr><td>${start+i+1}</td><td><strong>${esc(r.applicantName)}</strong><br><small style="color:var(--t3)">${esc(r.applicantBuilding)}</small></td><td>${badge(r.repairType,'w')}</td><td>${esc(trunc(r.content,30))}</td><td>${fmtDT(r.createdAt)}</td><td>${badge(bl,bt)}</td><td><button class="btn btn-xs btn-p" data-action="process-repair" data-id="${r.id}">处理</button></td></tr>`; }, tableBodyId:'repairTableBody', paginationId:'repairPagination', perPage:8, emptyCols:7, searchId:'repairSearch', filterIds:['repairStatus','repairType'] });
 
-  // -- Complaint Managers --
-  const cmpMgr = createTableManager({
-    getData: () => DB.getComplaints(),
-    filterFn: (c, search, [st]) => (!search || c.content.toLowerCase().includes(search) || c.userName.toLowerCase().includes(search) || (c.category||'').toLowerCase().includes(search)) && (!st || c.status === st),
-    renderRow: (c, i, start) => {
-      const stMap = { pending: ['warning','待处理'], processing: ['info','处理中'], resolved: ['success','已解决'] };
-      const [bType, bLabel] = stMap[c.status] || ['neutral', c.status];
-      return `<tr><td>${start+i+1}</td><td><strong>${esc(c.userName)}</strong><br><small style="color:var(--text3)">${esc(c.building)}</small></td><td>${esc(trunc(c.content, 36))}</td><td>${esc(c.userPhone)}</td><td>${fmtDT(c.createdAt)}</td><td>${badge(bLabel, bType)}</td><td><button class="btn btn-xs btn-primary" data-action="process-complaint" data-id="${c.id}">处理</button></td></tr>`;
-    },
-    tableBodyId: 'complaintTableBody', paginationId: 'complaintPagination', perPage: 8, emptyCols: 7,
-    searchId: 'complaintSearch', filterIds: ['complaintStatus']
-  });
+  function showRepairDetail(id) { const r=DB.getRepairRequestById(id); if(!r)return toast('报修申请不存在','error'); const sm={ pending:['w','待处理'], processing:['i','处理中'], resolved:['s','已完成'] }; const[bt,bl]=sm[r.status]||['n',r.status]; let so=''; if(r.status==='pending')so='<option value="pending" selected>待处理</option><option value="processing">处理中</option><option value="resolved">已完成</option>'; else if(r.status==='processing')so='<option value="processing" selected>处理中</option><option value="resolved">已完成</option>'; else so='<option value="resolved" selected>已完成</option>'; let hh=''; if(r.responseHistory&&r.responseHistory.length){ hh='<div class="detail-block"><h4>📜 处理记录</h4>'+[...r.responseHistory].reverse().map(h=>`<div class="history-item"><span class="h-action">${esc(h.action)}</span> <span class="h-time">${fmtDT(h.time)} · ${esc(h.operator)}</span>${h.note?`<div style="margin-top:3px;color:var(--t2)">${esc(h.note)}</div>`:''}</div>`).join('')+'</div>'; } $('#repairDetailContent').innerHTML=`<div class="detail-block"><h4>🔧 报修详情</h4><div class="detail-row"><span class="lbl">状态：</span><span class="val">${badge(bl,bt)}</span></div><div class="detail-row"><span class="lbl">申请人：</span><span class="val">${esc(r.applicantName)}（${esc(r.applicantBuilding)}）</span></div><div class="detail-row"><span class="lbl">电话：</span><span class="val">${esc(r.applicantPhone)}</span></div><div class="detail-row"><span class="lbl">类型：</span><span class="val">${badge(r.repairType,'w')}</span></div><div class="detail-row"><span class="lbl">时间：</span><span class="val">${fmtDT(r.createdAt)}</span></div><h4 style="margin-top:12px">报修内容：</h4><div class="detail-content">${esc(r.content)}</div></div><div class="detail-block"><h4>⚙️ 处理操作</h4><div class="field"><label>处理状态</label><select id="repairStatusSelect" class="form-input">${so}</select></div><div class="field"><label>回复内容</label><textarea id="repairResponse" class="form-input" rows="3" placeholder="输入给用户的回复内容...">${esc(r.response||'')}</textarea></div><div class="form-actions"><button class="btn btn-o" id="btnCancelRepair">取消</button><button class="btn btn-p" id="btnSaveRepair">保存处理</button></div></div>${hh}`; openModal($('#repairModal')); $('#btnCancelRepair').onclick=()=>closeModal($('#repairModal')); $('#btnSaveRepair').onclick=()=>{ const st=$('#repairStatusSelect').value; const resp=$('#repairResponse').value.trim(); if(st==='resolved'&&resp){ DB.updateRepair(id,{status:st,response:resp}); toast('报修已处理完成','success'); } else if(st!==r.status){ DB.updateRepair(id,{status:st}); if(resp)DB.updateRepair(id,{response:resp}); toast('报修状态已更新','success'); } else if(resp){ DB.updateRepair(id,{response:resp}); toast('报修已回复','success'); } closeModal($('#repairModal')); repMgr.reset(); if($('#page-dashboard').classList.contains('active'))loadDashboard(); }; }
 
-  function showComplaintDetail(id) {
-    const c = DB.getComplaintById(id);
-    if (!c) return toast('投诉不存在', 'error');
-    const stMap = { pending: ['warning','待处理'], processing: ['info','处理中'], resolved: ['success','已解决'] };
-    const [bType, bLabel] = stMap[c.status] || ['neutral', c.status];
-    let stOpts = '';
-    if (c.status === 'pending') stOpts = '<option value="pending" selected>待处理</option><option value="processing">处理中</option><option value="resolved">已解决</option>';
-    else if (c.status === 'processing') stOpts = '<option value="processing" selected>处理中</option><option value="resolved">已解决</option>';
-    else stOpts = '<option value="resolved" selected>已解决</option>';
+  const payMgr = createTableManager({ getData:()=>{ const s=DB.getPaymentStats(); $('#paymentTotalCount').textContent=s.total; $('#paymentTotalAmount').textContent='¥'+s.totalAmount.toLocaleString(); $('#paymentThisMonth').textContent='¥'+s.monthAmount.toLocaleString(); $('#paymentPending').textContent=s.pending+s.overdue; return DB.getPaymentRecords(); }, filterFn:(p,s,[tp,st])=>(!s||p.userName.toLowerCase().includes(s)||p.userBuilding.toLowerCase().includes(s))&&(!tp||p.type===tp)&&(!st||p.status===st), renderRow:(p,i,start)=>{ const sm={ paid:['s','已缴费'], pending:['w','待缴费'], overdue:['d','已逾期'] }; const[bt,bl]=sm[p.status]||['n',p.status]; return `<tr><td>${start+i+1}</td><td><strong>${esc(p.userName)}</strong></td><td>${esc(p.userBuilding)}</td><td>${esc(p.type)}</td><td><strong>¥${p.amount.toLocaleString()}</strong><br><small style="color:var(--t3)">${esc(p.period)}</small></td><td>${p.payTime?fmtDate(p.payTime):'<span style="color:var(--t3)">-</span>'}</td><td>${badge(bl,bt)}</td></tr>`; }, tableBodyId:'paymentTableBody', paginationId:'paymentPagination', perPage:10, emptyCols:7, searchId:'paymentSearch', filterIds:['paymentTypeFilter','paymentStatusFilter2'] });
 
-    let histHTML = '';
-    if (c.responseHistory && c.responseHistory.length) {
-      histHTML = '<div class="detail-block"><h4>📜 处理记录</h4>' + [...c.responseHistory].reverse().map(h => `<div class="history-item"><span class="h-action">${esc(h.action)}</span> <span class="h-time">${fmtDT(h.time)} · ${esc(h.operator)}</span>${h.note ? `<div style="margin-top:3px;color:var(--text2)">${esc(h.note)}</div>` : ''}</div>`).join('') + '</div>';
-    }
+  const loaders = { dashboard:loadDashboard, announcement:()=>annMgr.reset(), complaint:()=>cmpMgr.reset(), visitor:()=>visMgr.reset(), parking:()=>parkMgr.reset(), repair:()=>repMgr.reset(), payment:()=>payMgr.reset() };
 
-    $('#complaintDetailContent').innerHTML = `
-      <div class="detail-block">
-        <h4>📝 投诉信息</h4>
-        <div class="detail-row"><span class="lbl">投诉人：</span><span class="val">${esc(c.userName)}</span></div>
-        <div class="detail-row"><span class="lbl">住址：</span><span class="val">${esc(c.building)}</span></div>
-        <div class="detail-row"><span class="lbl">电话：</span><span class="val">${esc(c.userPhone)}</span></div>
-        <div class="detail-row"><span class="lbl">类别：</span><span class="val">${esc(c.category||'未分类')}</span></div>
-        <div class="detail-row"><span class="lbl">时间：</span><span class="val">${fmtDT(c.createdAt)}</span></div>
-        <h4 style="margin-top:12px">投诉内容：</h4>
-        <div class="detail-content">${esc(c.content)}</div>
-      </div>
-      <div class="detail-block">
-        <h4>⚙️ 处理操作</h4>
-        <div class="field"><label>处理状态</label><select id="complaintStatusSelect" class="form-input">${stOpts}</select></div>
-        <div class="field"><label>回复内容</label><textarea id="complaintResponse" class="form-input" rows="3" placeholder="输入给用户的回复内容...">${esc(c.response||'')}</textarea></div>
-        <div class="form-actions"><button class="btn btn-outline" id="btnCancelComplaint">取消</button><button class="btn btn-primary" id="btnSaveComplaint">保存处理</button></div>
-      </div>${histHTML}`;
-    openModal($('#complaintModal'));
+  function handleLogin(e) { e.preventDefault(); const u=$('#username').value.trim(),p=$('#password').value.trim(); if(!u||!p){ $('#loginError').textContent='请输入账号和密码';return; } const r=DB.login(u,p); if(r.success){ $('#loginError').textContent='';showMain();toast('登录成功，欢迎回来！','success');navigateTo('dashboard'); } else { $('#loginError').textContent=r.message; } }
+  function handleLogout() { DB.logout(); $('#mainPage').style.display='none';$('#loginPage').style.display='flex'; $('#username').value='';$('#password').value='';$('#loginError').textContent=''; toast('已安全退出','info'); }
+  function showMain() { $('#loginPage').style.display='none';$('#mainPage').style.display='flex'; const u=DB.getCurrentUser();if(u)$('#currentUserName').textContent=u.name; }
+  function toggleSidebar() { $('#sidebar').classList.toggle('collapsed');$('#mainContent').classList.toggle('expanded'); }
+  function updateClock() { const d=new Date(); const wd=['日','一','二','三','四','五','六']; $('#topbarTime').textContent=`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 星期${wd[d.getDay()]} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`; }
 
-    $('#btnCancelComplaint').onclick = () => closeModal($('#complaintModal'));
-    $('#btnSaveComplaint').onclick = () => {
-      const st = $('#complaintStatusSelect').value;
-      const resp = $('#complaintResponse').value.trim();
-      if (st === 'resolved' && resp) { DB.updateComplaint(id, { status: st, response: resp }); toast('投诉已处理并回复', 'success'); }
-      else if (st !== c.status) { DB.updateComplaint(id, { status: st }); if (resp) DB.updateComplaint(id, { response: resp }); toast('投诉状态已更新', 'success'); }
-      else if (resp) { DB.updateComplaint(id, { response: resp }); toast('投诉已回复', 'success'); }
-      closeModal($('#complaintModal')); cmpMgr.reset();
-      if ($('#page-dashboard').classList.contains('active')) loadDashboard();
-    };
-  }
+  function clearFilter(sid, fids, mgr) { $('#'+sid).value=''; fids.forEach(id=>{$('#'+id).value='';}); mgr.reset(); }
 
-  // -- Visitor Managers --
-  const visMgr = createTableManager({
-    getData: () => DB.getVisitorPasses(),
-    filterFn: (v, search, [st]) => (!search || v.applicantName.toLowerCase().includes(search) || v.visitorName.toLowerCase().includes(search) || (v.plateNumber||'').toLowerCase().includes(search) || (v.visitReason||'').toLowerCase().includes(search)) && (!st || v.status === st),
-    renderRow: (v, i, start) => {
-      const stMap = { pending: ['warning','待审核'], approved: ['success','已通过'], rejected: ['danger','已拒绝'] };
-      const [bType, bLabel] = stMap[v.status] || ['neutral', v.status];
-      return `<tr><td>${start+i+1}</td><td><strong>${esc(v.applicantName)}</strong><br><small style="color:var(--text3)">${esc(v.applicantBuilding)}</small></td><td>${esc(v.visitorName)}</td><td>${esc(v.visitDate)}</td><td>${v.plateNumber ? esc(v.plateNumber) : '<span style="color:var(--text3)">无</span>'}</td><td>${fmtDT(v.createdAt)}</td><td>${badge(bLabel, bType)}</td><td><button class="btn btn-xs btn-primary" data-action="review-visitor" data-id="${v.id}">审核</button></td></tr>`;
-    },
-    tableBodyId: 'visitorTableBody', paginationId: 'visitorPagination', perPage: 8, emptyCols: 8,
-    searchId: 'visitorSearch', filterIds: ['visitorStatus']
-  });
-
-  function showVisitorDetail(id) {
-    const v = DB.getVisitorPassById(id);
-    if (!v) return toast('访客通行申请不存在', 'error');
-    const stMap = { pending: ['warning','待审核'], approved: ['success','已通过'], rejected: ['danger','已拒绝'] };
-    const [bType, bLabel] = stMap[v.status] || ['neutral', v.status];
-
-    let histHTML = '';
-    if (v.responseHistory && v.responseHistory.length) {
-      histHTML = '<div class="detail-block"><h4>📜 审核记录</h4>' + [...v.responseHistory].reverse().map(h => `<div class="history-item"><span class="h-action">${esc(h.action)}</span> <span class="h-time">${fmtDT(h.time)} · ${esc(h.operator)}</span>${h.note ? `<div style="margin-top:3px;color:var(--text2)">${esc(h.note)}</div>` : ''}</div>`).join('') + '</div>';
-    }
-
-    $('#visitorDetailContent').innerHTML = `
-      <div class="detail-block">
-        <h4>🛂 访客通行申请</h4>
-        <div class="detail-row"><span class="lbl">状态：</span><span class="val">${badge(bLabel, bType)}</span></div>
-        <div class="detail-row"><span class="lbl">申请人：</span><span class="val">${esc(v.applicantName)}（${esc(v.applicantBuilding)}）</span></div>
-        <div class="detail-row"><span class="lbl">电话：</span><span class="val">${esc(v.applicantPhone)}</span></div>
-        <div class="detail-row"><span class="lbl">访客：</span><span class="val">${esc(v.visitorName)}（${esc(v.visitorPhone)}）</span></div>
-        <div class="detail-row"><span class="lbl">人数：</span><span class="val">${v.visitorCount}人</span></div>
-        <div class="detail-row"><span class="lbl">日期：</span><span class="val">${esc(v.visitDate)}</span></div>
-        <div class="detail-row"><span class="lbl">车牌：</span><span class="val">${v.plateNumber||'无'}</span></div>
-        <h4 style="margin-top:12px">来访事由：</h4>
-        <div class="detail-content">${esc(v.visitReason)}</div>
-      </div>
-      ${v.status === 'pending' ? `
-        <div class="detail-block">
-          <h4>⚙️ 审核操作</h4>
-          <div class="field"><label>审核意见</label><textarea id="visitorReviewNote" class="form-input" rows="3" placeholder="输入审核意见..."></textarea></div>
-          <div class="form-actions"><button class="btn btn-outline" id="btnCancelVisitor">取消</button><button class="btn btn-danger" id="btnRejectVisitor">拒绝</button><button class="btn btn-success" id="btnApproveVisitor">通过</button></div>
-        </div>` : `
-        <div class="detail-block"><h4>📋 审核结果</h4><div class="detail-content">${esc(v.responseNote||'无')}</div></div>`}
-      ${histHTML}`;
-    openModal($('#visitorModal'));
-
-    $('#btnCancelVisitor') && ($('#btnCancelVisitor').onclick = () => closeModal($('#visitorModal')));
-    $('#btnApproveVisitor') && ($('#btnApproveVisitor').onclick = () => {
-      const note = $('#visitorReviewNote').value.trim() || '审核通过，欢迎来访。';
-      DB.approveVisitorPass(id, note); toast('访客通行已审核通过', 'success');
-      closeModal($('#visitorModal')); visMgr.reset();
-      if ($('#page-dashboard').classList.contains('active')) loadDashboard();
-    });
-    $('#btnRejectVisitor') && ($('#btnRejectVisitor').onclick = () => {
-      const note = $('#visitorReviewNote').value.trim() || '审核未通过。';
-      DB.rejectVisitorPass(id, note); toast('访客通行已拒绝', 'warning');
-      closeModal($('#visitorModal')); visMgr.reset();
-      if ($('#page-dashboard').classList.contains('active')) loadDashboard();
-    });
-  }
-
-  // -- Parking Managers --
-  const parkMgr = createTableManager({
-    getData: () => {
-      const stats = DB.getParkingStats();
-      $('#parkingTotal').textContent = stats.total;
-      $('#parkingAvailable').textContent = stats.available;
-      $('#parkingOccupied').textContent = stats.occupied;
-      $('#parkingMaintenance').textContent = stats.maintenance;
-      return DB.getParkingSpots();
-    },
-    filterFn: (p, search, [st, tp]) => (!search || p.spotNumber.toLowerCase().includes(search) || p.area.toLowerCase().includes(search) || (p.ownerName||'').toLowerCase().includes(search) || (p.plateNumber||'').toLowerCase().includes(search)) && (!st || p.status === st) && (!tp || p.type === tp),
-    renderRow: (p, i, start) => {
-      const stMap = { available: ['success','空闲'], occupied: ['info','已占用'], reserved: ['warning','已预留'], maintenance: ['danger','维护中'] };
-      const [bType, bLabel] = stMap[p.status] || ['neutral', p.status];
-      const tpMap = { standard: '标准车位', electric: '新能源充电', disabled: '无障碍车位' };
-      return `<tr><td>${start+i+1}</td><td><strong>${esc(p.spotNumber)}</strong></td><td>${esc(p.area)}</td><td>${tpMap[p.type]||p.type}</td><td>${badge(bLabel, bType)}</td><td>${p.ownerName||'<span style="color:var(--text3)">-</span>'}</td><td>${p.plateNumber||'<span style="color:var(--text3)">-</span>'}</td><td>${p.rentExpiry||'<span style="color:var(--text3)">-</span>'}</td></tr>`;
-    },
-    tableBodyId: 'parkingTableBody', paginationId: 'parkingPagination', perPage: 10, emptyCols: 8,
-    searchId: 'parkingSearch', filterIds: ['parkingStatusFilter', 'parkingTypeFilter']
-  });
-
-  // -- Repair Managers --
-  const repMgr = createTableManager({
-    getData: () => DB.getRepairRequests(),
-    filterFn: (r, search, [st, tp]) => (!search || r.applicantName.toLowerCase().includes(search) || r.content.toLowerCase().includes(search) || r.repairType.toLowerCase().includes(search)) && (!st || r.status === st) && (!tp || r.repairType === tp),
-    renderRow: (r, i, start) => {
-      const stMap = { pending: ['warning','待处理'], processing: ['info','处理中'], resolved: ['success','已完成'] };
-      const [bType, bLabel] = stMap[r.status] || ['neutral', r.status];
-      return `<tr><td>${start+i+1}</td><td><strong>${esc(r.applicantName)}</strong><br><small style="color:var(--text3)">${esc(r.applicantBuilding)}</small></td><td>${badge(r.repairType, 'warning')}</td><td>${esc(trunc(r.content, 30))}</td><td>${fmtDT(r.createdAt)}</td><td>${badge(bLabel, bType)}</td><td><button class="btn btn-xs btn-primary" data-action="process-repair" data-id="${r.id}">处理</button></td></tr>`;
-    },
-    tableBodyId: 'repairTableBody', paginationId: 'repairPagination', perPage: 8, emptyCols: 7,
-    searchId: 'repairSearch', filterIds: ['repairStatus', 'repairType']
-  });
-
-  function showRepairDetail(id) {
-    const r = DB.getRepairRequestById(id);
-    if (!r) return toast('报修申请不存在', 'error');
-    const stMap = { pending: ['warning','待处理'], processing: ['info','处理中'], resolved: ['success','已完成'] };
-    const [bType, bLabel] = stMap[r.status] || ['neutral', r.status];
-    let stOpts = '';
-    if (r.status === 'pending') stOpts = '<option value="pending" selected>待处理</option><option value="processing">处理中</option><option value="resolved">已完成</option>';
-    else if (r.status === 'processing') stOpts = '<option value="processing" selected>处理中</option><option value="resolved">已完成</option>';
-    else stOpts = '<option value="resolved" selected>已完成</option>';
-
-    let histHTML = '';
-    if (r.responseHistory && r.responseHistory.length) {
-      histHTML = '<div class="detail-block"><h4>📜 处理记录</h4>' + [...r.responseHistory].reverse().map(h => `<div class="history-item"><span class="h-action">${esc(h.action)}</span> <span class="h-time">${fmtDT(h.time)} · ${esc(h.operator)}</span>${h.note ? `<div style="margin-top:3px;color:var(--text2)">${esc(h.note)}</div>` : ''}</div>`).join('') + '</div>';
-    }
-
-    $('#repairDetailContent').innerHTML = `
-      <div class="detail-block">
-        <h4>🔧 报修详情</h4>
-        <div class="detail-row"><span class="lbl">状态：</span><span class="val">${badge(bLabel, bType)}</span></div>
-        <div class="detail-row"><span class="lbl">申请人：</span><span class="val">${esc(r.applicantName)}（${esc(r.applicantBuilding)}）</span></div>
-        <div class="detail-row"><span class="lbl">电话：</span><span class="val">${esc(r.applicantPhone)}</span></div>
-        <div class="detail-row"><span class="lbl">类型：</span><span class="val">${badge(r.repairType, 'warning')}</span></div>
-        <div class="detail-row"><span class="lbl">时间：</span><span class="val">${fmtDT(r.createdAt)}</span></div>
-        <h4 style="margin-top:12px">报修内容：</h4>
-        <div class="detail-content">${esc(r.content)}</div>
-      </div>
-      <div class="detail-block">
-        <h4>⚙️ 处理操作</h4>
-        <div class="field"><label>处理状态</label><select id="repairStatusSelect" class="form-input">${stOpts}</select></div>
-        <div class="field"><label>回复内容</label><textarea id="repairResponse" class="form-input" rows="3" placeholder="输入给用户的回复内容...">${esc(r.response||'')}</textarea></div>
-        <div class="form-actions"><button class="btn btn-outline" id="btnCancelRepair">取消</button><button class="btn btn-primary" id="btnSaveRepair">保存处理</button></div>
-      </div>${histHTML}`;
-    openModal($('#repairModal'));
-
-    $('#btnCancelRepair').onclick = () => closeModal($('#repairModal'));
-    $('#btnSaveRepair').onclick = () => {
-      const st = $('#repairStatusSelect').value;
-      const resp = $('#repairResponse').value.trim();
-      if (st === 'resolved' && resp) { DB.updateRepair(id, { status: st, response: resp }); toast('报修已处理完成', 'success'); }
-      else if (st !== r.status) { DB.updateRepair(id, { status: st }); if (resp) DB.updateRepair(id, { response: resp }); toast('报修状态已更新', 'success'); }
-      else if (resp) { DB.updateRepair(id, { response: resp }); toast('报修已回复', 'success'); }
-      closeModal($('#repairModal')); repMgr.reset();
-      if ($('#page-dashboard').classList.contains('active')) loadDashboard();
-    };
-  }
-
-  // -- Payment Managers --
-  const payMgr = createTableManager({
-    getData: () => {
-      const stats = DB.getPaymentStats();
-      $('#paymentTotalCount').textContent = stats.total;
-      $('#paymentTotalAmount').textContent = '¥' + stats.totalAmount.toLocaleString();
-      $('#paymentThisMonth').textContent = '¥' + stats.monthAmount.toLocaleString();
-      $('#paymentPending').textContent = stats.pending + stats.overdue;
-      return DB.getPaymentRecords();
-    },
-    filterFn: (p, search, [tp, st]) => (!search || p.userName.toLowerCase().includes(search) || p.userBuilding.toLowerCase().includes(search) || p.type.toLowerCase().includes(search)) && (!tp || p.type === tp) && (!st || p.status === st),
-    renderRow: (p, i, start) => {
-      const stMap = { paid: ['success','已缴费'], pending: ['warning','待缴费'], overdue: ['danger','已逾期'] };
-      const [bType, bLabel] = stMap[p.status] || ['neutral', p.status];
-      return `<tr><td>${start+i+1}</td><td><strong>${esc(p.userName)}</strong></td><td>${esc(p.userBuilding)}</td><td>${esc(p.type)}</td><td><strong>¥${p.amount.toLocaleString()}</strong><br><small style="color:var(--text3)">${esc(p.period)}</small></td><td>${p.payTime ? fmtDate(p.payTime) : '<span style="color:var(--text3)">-</span>'}</td><td>${badge(bLabel, bType)}</td></tr>`;
-    },
-    tableBodyId: 'paymentTableBody', paginationId: 'paymentPagination', perPage: 10, emptyCols: 7,
-    searchId: 'paymentSearch', filterIds: ['paymentTypeFilter', 'paymentStatusFilter2']
-  });
-
-  // -- Loader Map --
-  const loaders = {
-    dashboard: loadDashboard,
-    announcement: () => annMgr.reset(),
-    complaint: () => cmpMgr.reset(),
-    visitor: () => visMgr.reset(),
-    parking: () => parkMgr.reset(),
-    repair: () => repMgr.reset(),
-    payment: () => payMgr.reset()
-  };
-
-  // -- Auth --
-  function handleLogin(e) {
-    e.preventDefault();
-    const u = $('#username').value.trim(), p = $('#password').value.trim();
-    if (!u || !p) { $('#loginError').textContent = '请输入账号和密码'; return; }
-    const r = DB.login(u, p);
-    if (r.success) { $('#loginError').textContent = ''; showMain(); toast('登录成功，欢迎回来！', 'success'); navigateTo('dashboard'); }
-    else { $('#loginError').textContent = r.message; }
-  }
-  function handleLogout() {
-    DB.logout(); $('#mainPage').style.display = 'none'; $('#loginPage').style.display = 'flex';
-    $('#username').value = ''; $('#password').value = ''; $('#loginError').textContent = '';
-    toast('已安全退出', 'info');
-  }
-  function showMain() {
-    $('#loginPage').style.display = 'none'; $('#mainPage').style.display = 'flex';
-    const user = DB.getCurrentUser(); if (user) $('#currentUserName').textContent = user.name;
-  }
-
-  // -- Sidebar --
-  function toggleSidebar() {
-    $('#sidebar').classList.toggle('collapsed');
-    $('#mainContent').classList.toggle('expanded');
-  }
-
-  // -- Clock --
-  function updateClock() {
-    const d = new Date();
-    const wd = ['日','一','二','三','四','五','六'];
-    $('#topbarTime').textContent = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 星期${wd[d.getDay()]} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;
-  }
-
-  // -- Clear Filter Helpers --
-  function clearFilter(searchId, filterIds, mgr) {
-    $('#' + searchId).value = '';
-    filterIds.forEach(id => { $('#' + id).value = ''; });
-    mgr.reset();
-  }
-
-  // -- Init --
   function init() {
-    // Auth check
-    if (DB.isLoggedIn()) { showMain(); navigateTo('dashboard'); }
-    else { $('#loginPage').style.display = 'flex'; $('#mainPage').style.display = 'none'; }
-
-    // Login form
-    $('#loginForm').addEventListener('submit', handleLogin);
-    $('#logoutBtn').addEventListener('click', handleLogout);
-
-    // Navigation
-    $$('.sidebar-nav a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); navigateTo(a.dataset.page); }));
-
-    // Sidebar toggle
-    $('#menuToggle').addEventListener('click', toggleSidebar);
-
-    // Announcement form
-    $('#btnNewAnnouncement').addEventListener('click', openNewAnnouncement);
-    $('#announcementForm').addEventListener('submit', saveAnnouncement);
-    $('#cancelAnnouncement').addEventListener('click', () => closeModal($('#announcementModal')));
-
-    // Clear filter buttons
-    $('#btnClearAnnouncementFilter').addEventListener('click', () => clearFilter('announcementSearch', ['announcementCategory'], annMgr));
-    $('#btnClearComplaintFilter').addEventListener('click', () => clearFilter('complaintSearch', ['complaintStatus'], cmpMgr));
-    $('#btnClearVisitorFilter').addEventListener('click', () => clearFilter('visitorSearch', ['visitorStatus'], visMgr));
-    $('#btnClearParkingFilter').addEventListener('click', () => clearFilter('parkingSearch', ['parkingStatusFilter','parkingTypeFilter'], parkMgr));
-    $('#btnClearRepairFilter').addEventListener('click', () => clearFilter('repairSearch', ['repairStatus','repairType'], repMgr));
-    $('#btnClearPaymentFilter').addEventListener('click', () => clearFilter('paymentSearch', ['paymentTypeFilter','paymentStatusFilter2'], payMgr));
-
-    // Search/filter inputs — debounced reload
-    const debounce = (fn, ms = 250) => { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); }; };
-    ['announcementSearch','announcementCategory'].forEach(id => $('#'+id).addEventListener(id.endsWith('Category')?'change':'input', debounce(() => annMgr.reset())));
-    ['complaintSearch','complaintStatus'].forEach(id => $('#'+id).addEventListener(id.endsWith('Status')?'change':'input', debounce(() => cmpMgr.reset())));
-    ['visitorSearch','visitorStatus'].forEach(id => $('#'+id).addEventListener(id.endsWith('Status')?'change':'input', debounce(() => visMgr.reset())));
-    ['parkingSearch','parkingStatusFilter','parkingTypeFilter'].forEach(id => $('#'+id).addEventListener(id.includes('Search')?'input':'change', debounce(() => parkMgr.reset())));
-    ['repairSearch','repairStatus','repairType'].forEach(id => $('#'+id).addEventListener(id.includes('Search')?'input':'change', debounce(() => repMgr.reset())));
-    ['paymentSearch','paymentTypeFilter','paymentStatusFilter2'].forEach(id => $('#'+id).addEventListener(id.includes('Search')?'input':'change', debounce(() => payMgr.reset())));
-
-    // Global delegated click handler for actions, modals, navigation
-    document.addEventListener('click', e => {
-      // Modal overlay click (close)
-      if (e.target.matches('.modal-overlay')) { closeModal(e.target); return; }
-      // Modal close button
-      if (e.target.closest('.modal-close')) { closeModal(e.target.closest('.modal-overlay')); return; }
-
-      // Data-action buttons
-      const btn = e.target.closest('[data-action]');
-      if (btn) {
-        const action = btn.dataset.action, id = btn.dataset.id;
-        if (action === 'view-announcement') showAnnouncementDetail(id);
-        else if (action === 'edit-announcement') openEditAnnouncement(id);
-        else if (action === 'delete-announcement') deleteAnnouncement(id);
-        else if (action === 'process-complaint') showComplaintDetail(id);
-        else if (action === 'review-visitor') showVisitorDetail(id);
-        else if (action === 'process-repair') showRepairDetail(id);
-        return;
-      }
-
-      // Data-page links
-      const link = e.target.closest('[data-page]');
-      if (link && pageTitles[link.dataset.page]) { e.preventDefault(); navigateTo(link.dataset.page); return; }
-
-      // Stat card navigation
-      const card = e.target.closest('.stat-card[data-nav]');
-      if (card) { navigateTo(card.dataset.nav); return; }
+    if(DB.isLoggedIn()){ showMain();navigateTo('dashboard'); } else { $('#loginPage').style.display='flex';$('#mainPage').style.display='none'; }
+    $('#loginForm').addEventListener('submit',handleLogin);
+    $('#logoutBtn').addEventListener('click',handleLogout);
+    $$('.sidebar-nav a').forEach(a=>a.addEventListener('click',e=>{ e.preventDefault();navigateTo(a.dataset.page); }));
+    $('#menuToggle').addEventListener('click',toggleSidebar);
+    $('#btnNewAnnouncement').addEventListener('click',openNewAnnouncement);
+    $('#announcementForm').addEventListener('submit',saveAnnouncement);
+    $('#cancelAnnouncement').addEventListener('click',()=>closeModal($('#announcementModal')));
+    $('#btnClearAnnouncementFilter').addEventListener('click',()=>clearFilter('announcementSearch',['announcementCategory'],annMgr));
+    $('#btnClearComplaintFilter').addEventListener('click',()=>clearFilter('complaintSearch',['complaintStatus'],cmpMgr));
+    $('#btnClearVisitorFilter').addEventListener('click',()=>clearFilter('visitorSearch',['visitorStatus'],visMgr));
+    $('#btnClearParkingFilter').addEventListener('click',()=>clearFilter('parkingSearch',['parkingStatusFilter','parkingTypeFilter'],parkMgr));
+    $('#btnClearRepairFilter').addEventListener('click',()=>clearFilter('repairSearch',['repairStatus','repairType'],repMgr));
+    $('#btnClearPaymentFilter').addEventListener('click',()=>clearFilter('paymentSearch',['paymentTypeFilter','paymentStatusFilter2'],payMgr));
+    const db = (fn,ms=250) => { let t; return (...a)=>{ clearTimeout(t);t=setTimeout(()=>fn(...a),ms); }; };
+    ['announcementSearch','announcementCategory'].forEach(id=>$('#'+id).addEventListener(id.endsWith('Category')?'change':'input',db(()=>annMgr.reset())));
+    ['complaintSearch','complaintStatus'].forEach(id=>$('#'+id).addEventListener(id.endsWith('Status')?'change':'input',db(()=>cmpMgr.reset())));
+    ['visitorSearch','visitorStatus'].forEach(id=>$('#'+id).addEventListener(id.endsWith('Status')?'change':'input',db(()=>visMgr.reset())));
+    ['parkingSearch','parkingStatusFilter','parkingTypeFilter'].forEach(id=>$('#'+id).addEventListener(id.includes('Search')?'input':'change',db(()=>parkMgr.reset())));
+    ['repairSearch','repairStatus','repairType'].forEach(id=>$('#'+id).addEventListener(id.includes('Search')?'input':'change',db(()=>repMgr.reset())));
+    ['paymentSearch','paymentTypeFilter','paymentStatusFilter2'].forEach(id=>$('#'+id).addEventListener(id.includes('Search')?'input':'change',db(()=>payMgr.reset())));
+    document.addEventListener('click',e=>{
+      if(e.target.matches('.modal-overlay')){ closeModal(e.target);return; }
+      if(e.target.closest('.modal-close')){ closeModal(e.target.closest('.modal-overlay'));return; }
+      const btn=e.target.closest('[data-action]');
+      if(btn){ const a=btn.dataset.action,id=btn.dataset.id; if(a==='view-announcement')showAnnouncementDetail(id); else if(a==='edit-announcement')openEditAnnouncement(id); else if(a==='delete-announcement')deleteAnnouncement(id); else if(a==='process-complaint')showComplaintDetail(id); else if(a==='review-visitor')showVisitorDetail(id); else if(a==='process-repair')showRepairDetail(id); return; }
+      const link=e.target.closest('[data-page]'); if(link&&pageTitles[link.dataset.page]){ e.preventDefault();navigateTo(link.dataset.page);return; }
+      const card=e.target.closest('.stat-card[data-nav]'); if(card){ navigateTo(card.dataset.nav);return; }
     });
-
-    // Escape key closes modals
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') $$('.modal-overlay').forEach(m => { if (m.style.display === 'flex') closeModal(m); });
-    });
-
-    // Clock
-    updateClock(); setInterval(updateClock, 1000);
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape')$$('.modal-overlay').forEach(m=>{ if(m.style.display==='flex')closeModal(m); }); });
+    updateClock();setInterval(updateClock,1000);
   }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
 </body>
